@@ -33,6 +33,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0'
   gem 'factory_bot_rails'
+  gem 'rubocop', '~> 1.18.0', require: false
+  gem 'rubocop-performance', '~> 1.11.0', require: false
+  gem 'rubocop-rails', '~> 2.11.0', require: false
 end
 
 group :development do
@@ -52,6 +55,8 @@ group :test do
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'rails-controller-testing'
 end
