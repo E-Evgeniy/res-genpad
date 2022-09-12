@@ -81,11 +81,11 @@ RSpec.describe CodesController, type: :controller do
 
    describe 'PATCH #update' do
      context 'with valid attributes' do
-       it 'assigns the requested question to code' do
+       it 'assigns the requested code to @code' do
          patch :update, params: { id: code, code: attributes_for(:code) }
          expect(assigns(:code)).to eq code
        end
-       it 'changes question attributes'do
+       it 'changes code attributes'do
          patch :update, params: { id: code, code: {code: '456'} }
          code.reload
 
@@ -98,10 +98,27 @@ RSpec.describe CodesController, type: :controller do
      end
 
      context 'with invalid attributes' do
+       before { patch :update, params: { id: code, code: attributes_for(:code, :invalid) } }
        it 'does not change question' do
-        patch :update, params: { id: code, code: attributes_for(:code, :invalid) }
+        
         code.reload
+        expect(code.code).to eq '123'
        end
+
+       it 're-renders edit view' do
+        expect(response).to render_template :edit
+       end
+     end
+   end
+
+   describe 'DELETE #destroy' do
+     it 'deletes the code ' do
+      expect { delete :destroy, params: { id: code } }.to change(Code, :count).by(-1)
+     end
+
+     it 'redirect to index' do
+      delete :destroy, params: { id: code }
+      expect(response).to redirect_to codes_path
      end
    end
 
