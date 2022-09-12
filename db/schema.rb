@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_29_152130) do
+ActiveRecord::Schema.define(version: 2022_09_02_091551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "codes", force: :cascade do |t|
+    t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.string "marker"
+    t.string "configuration"
+    t.bigint "code_id"
+    t.string "user_testing"
+    t.bigint "user_id"
+    t.datetime "test_date"
+    t.integer "device_id"
+    t.string "covid"
+    t.string "flub"
+    t.string "flua"
+    t.string "ipc"
+    t.string "status"
+    t.string "date_chip"
+    t.string "text_header_1"
+    t.string "text_header_2"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code_id"], name: "index_results_on_code_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -22,4 +50,6 @@ ActiveRecord::Schema.define(version: 2022_08_29_152130) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "results", "codes"
+  add_foreign_key "results", "users"
 end
