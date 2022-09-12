@@ -1,19 +1,22 @@
-class CodesController < ApplicationController 
-  before_action :load_code, only: [:show, :edit, :update ]
+# frozen_string_literal: true
+
+# Test comment
+
+class CodesController < ApplicationController
+  before_action :load_code, only: %i[show edit update destroy]
 
   def index
     @codes = Code.all
   end
 
   def show
-    
   end
 
   def new
     @code = Code.new
   end
 
-  def edit    
+  def edit
   end
 
   def create
@@ -23,7 +26,7 @@ class CodesController < ApplicationController
       redirect_to @code
     else
       render :new
-    end    
+    end
   end
 
   def update
@@ -35,6 +38,7 @@ class CodesController < ApplicationController
   end
 
   def destroy
+    @code.destroy
     redirect_to codes_path
   end
 
