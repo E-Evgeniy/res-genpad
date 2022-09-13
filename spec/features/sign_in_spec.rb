@@ -7,15 +7,23 @@ feature 'User can sign in', %q{
   As an unauthenticated user
   I-d like to be able to sign in
 } do
-  scenario 'Registered user tries to sign in' do
-    User.create!(email: 'user@test.com', password: '12345678')
+  given(:user) { User.create!(first_name: 'user', last_name: 'test', email: 'user@test.com', password: '12345678') }
+  background { visit new_user_session_path }
 
-    visit '/login'
-    fill_in 'Email', with: 'user@test.com'
-    fill_in 'Password', with: '12345678'
+  scenario 'Registered user tries to sign in' do
+    
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_on 'Log in'
 
     expect(page).to have_content 'Signed in successfully.'
   end
 
-  scenario 'Unregistered user tries to sign in'
+  scenario 'Unregistered user tries to sign in' do
+    fill_in 'Email', with: 'user1@test.com'
+    fill_in 'Password', with: '12345678'
+    click_on 'Log in'
+
+    expect(page).to have_content 'Invalid Email or password.'
+  end
 end
