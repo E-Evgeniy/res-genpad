@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe CodesController, type: :controller do
   let(:code) { create(:code) }
+  let(:user) { create(:user) }
+
   describe 'GET #index' do
     let(:codes) { create_list(:code, 3) }
 
@@ -31,6 +33,9 @@ RSpec.describe CodesController, type: :controller do
   end
 
   describe 'GET #new' do
+    
+    before { login(user) }
+
     before { get :new }
 
     it 'assign a new Code to @code' do
@@ -43,6 +48,7 @@ RSpec.describe CodesController, type: :controller do
   end
 
   describe 'GET #edit' do
+    before { login(user) }
     before { get :edit, params: { id: code } }
 
     it 'assign the requested code to @code' do
@@ -55,6 +61,7 @@ RSpec.describe CodesController, type: :controller do
   end
 
   describe 'POST #create' do
+    before { login(user) }
     context 'with valid atributes' do
       it 'saves a new code in the database' do
         expect { post :create, params: { code: attributes_for(:code) } }.to change(Code, :count).by(1)
@@ -79,6 +86,7 @@ RSpec.describe CodesController, type: :controller do
   end
 
   describe 'PATCH #update' do
+    before { login(user) }
     context 'with valid attributes' do
       it 'assigns the requested code to @code' do
         patch :update, params: { id: code, code: attributes_for(:code) }
@@ -110,6 +118,7 @@ RSpec.describe CodesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    before { login(user) }
     let!(:code) { create(:code) }
 
     it 'deletes the code ' do

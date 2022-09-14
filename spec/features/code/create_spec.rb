@@ -3,20 +3,32 @@
 require 'rails_helper'
 
 feature 'User can create code' do
-  given(:user) { User.create!(first_name: 'user', last_name: 'test', email: 'user@test.com', password: '12345678') }
-  scenario 'Authenticated user create code' do
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+  given(:user) { create(:user) }
 
+  describe 'Authenticated user' do
+    background do
+      sign_in(user)
+      visit codes_path
+      click_on 'New code'
+    end
+    
+    scenario 'create code' do
+      fill_in 'Code', with: '123'
+      click_on 'Create code'
+    
+      expect(page).to have_content 'Your code successfully created.'
+      expect(page).to have_content '123'
+    end
+    
+    scenario 'create code with errors' do
+      click_on 'Create code'
+      expect(page).to have_content "Code can't be blank"
+    end 
+  end
+
+  scenario 'Unauthenticated user create code' do
     visit codes_path
     click_on 'New code'
-
-    fill_in 'Code', with: '123'
-    click_on 'Create code'
-
-    expect(page).to have_content 'Your code successfully created.'
+    expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
-  scenario 'Authenticated user create code with errors'
-  scenario 'Unauthenticated user create code'
 end
