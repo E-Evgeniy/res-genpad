@@ -3,6 +3,7 @@
 # Test comment
 
 class CodesController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :load_code, only: %i[show edit update destroy]
 
   def index
@@ -23,7 +24,7 @@ class CodesController < ApplicationController
     @code = Code.create(code_params)
 
     if @code.save
-      redirect_to @code
+      redirect_to @code, notice: 'Your code successfully created.'
     else
       render :new
     end
@@ -49,6 +50,6 @@ class CodesController < ApplicationController
   end
 
   def code_params
-    params.require(:code).permit(:code)
+    params.require(:code).permit(:code, :threshold)
   end
 end
