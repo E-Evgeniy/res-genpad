@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_15_085431) do
+ActiveRecord::Schema.define(version: 2022_09_16_115835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,26 +22,46 @@ ActiveRecord::Schema.define(version: 2022_09_15_085431) do
     t.integer "threshold"
   end
 
-  create_table "results", force: :cascade do |t|
+  create_table "tests", force: :cascade do |t|
     t.string "marker"
-    t.string "configuration"
+    t.string "configuration_number"
+    t.string "configuration_text"
+    t.string "cartridge_type"
+    t.string "reagent"
+    t.date "production_date"
+    t.date "testing_date"
     t.bigint "code_id"
-    t.string "user_testing"
-    t.bigint "user_id"
-    t.datetime "test_date"
-    t.integer "device_id"
-    t.string "covid"
-    t.string "flub"
-    t.string "flua"
-    t.string "ipc"
-    t.string "status"
-    t.string "date_chip"
-    t.string "text_header_1"
-    t.string "text_header_2"
+    t.string "conclusion"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["code_id"], name: "index_results_on_code_id"
-    t.index ["user_id"], name: "index_results_on_user_id"
+    t.index ["code_id"], name: "index_tests_on_code_id"
+  end
+
+  create_table "tests_devices", force: :cascade do |t|
+    t.integer "device_id"
+    t.string "marker"
+    t.datetime "date_test"
+    t.string "sample_barcode"
+    t.integer "threshold"
+    t.string "result_covid"
+    t.string "result_flub"
+    t.string "result_flua"
+    t.string "result_ipc"
+    t.string "result_monkeypox"
+    t.string "conclusion_covid"
+    t.string "conclusion_flub"
+    t.string "conclusion_flua"
+    t.string "conclusion_ipc"
+    t.string "conclusion_monkeypox"
+    t.integer "volume_covid"
+    t.integer "volume_flub"
+    t.integer "volume_lua"
+    t.integer "volume_ipc"
+    t.integer "volume_monkeypox"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,6 +78,5 @@ ActiveRecord::Schema.define(version: 2022_09_15_085431) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "results", "codes"
-  add_foreign_key "results", "users"
+  add_foreign_key "tests", "codes"
 end

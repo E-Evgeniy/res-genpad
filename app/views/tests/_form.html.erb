@@ -1,0 +1,52 @@
+<%= form_with model: @test, local: true do |form| %>
+  <%= render 'shared/errors', resource: @code %>
+  <p>
+    <%= form.label :marker %><br>
+    <%= form.text_field :marker, id: :test_marker%>
+  </p>
+
+  <p>
+    <%= form.label :configuration_number %><br>
+    <%= form.text_field :configuration_number, id: :test_configuration_number %>
+  </p>
+
+  <p>
+    <%= form.label 'Chip production date' %><br>
+    <%= form.date_field :production_date, id: :test_production_date %>
+  </p>
+
+   <p>
+    <%= form.label 'Testing date' %><br>
+    <%= form.date_field :testing_date, id: :test_testing_date %>
+  </p>
+  <p>
+
+    <%= form.label 'Cartridge type' %><br>
+    <%= form.text_area :cartridge_type, id: :test_cartridge_type %>
+  </p>
+
+  <p>
+    <%= form.label 'Configuration describe' %><br>
+    <%= form.text_area :configuration_text, id: :test_configuration_text %>
+  </p>
+
+  <p>
+    <%= form.label 'Reagents' %><br>
+    <%= form.text_area :reagent, id: :test_reagent %>
+  </p>
+
+  <p>
+    <%= form.label 'Conclusion' %><br>
+    <%= form.text_area :conclusion, id: :test_conclusion %>
+  </p>
+
+  <p>
+    <%= form.label 'Note' %><br>
+    <%= form.text_area :description, id: :test_description %>
+  </p>
+  
+
+  <br>
+
+  <input type="submit" value="Accepct">
+  <% end %>
