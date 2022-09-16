@@ -50,6 +50,6 @@ class CodesController < ApplicationController
   end
 
   def code_params
-    params.require(:code).permit(:code)
+    params.require(:code).permit(:code, :threshold)
   end
 end

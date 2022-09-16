@@ -1,0 +1,25 @@
+<table class="codes_table">
+<tr>
+  <th class = 'th_code'>id</th>
+  <th class = 'th_code'>Codes</th>
+  <th class = 'th_code'>Threshold</th>
+</tr>
+<%= render @code %>
+</table>
+<p>
+
+<%= link_to 'Back to list codes', codes_path %>
+<p>
+<p class = 'btn'>
+<%= link_to 'Edit', edit_code_path(@code) %>
+</p>
+
+<p class = 'btn'>
+<%= link_to  'Delete',
+                code_path(@code),
+                method: :delete,
+                data: { confirm: 'Are you sure?'} %>
+</p>
+
+
+

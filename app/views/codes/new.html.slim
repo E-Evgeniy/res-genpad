@@ -1,6 +1,13 @@
 = render 'shared/errors', resource: @code
+h1
+  |  Creating the new code 
 
+p
 = form_with model: @code do |f|
   = f.label :code
-  = f.text_area :code
+  = f.text_field :code
+  p
+  = f.label :threshold
+  = f.text_field :threshold
+  p
   = f.submit 'Create code'
