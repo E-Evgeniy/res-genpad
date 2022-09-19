@@ -1,0 +1,11 @@
+<%= form_with model: @address, local: true do |form| %>
+  <%= render 'shared/errors', resource: @address %>
+  <p>
+    <%= form.label 'Address of the results folder' %><br>
+    <%= form.text_field :address, id: :address_assress%>
+  </p>
+
+  <br>
+
+  <input type='submit' value='Done'>
+  <% end %>

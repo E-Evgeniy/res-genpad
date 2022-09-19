@@ -10,16 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_16_115835) do
+ActiveRecord::Schema.define(version: 2022_09_19_120939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "codes", force: :cascade do |t|
     t.string "code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "threshold"
+  end
+
+  create_table "result_tests", force: :cascade do |t|
+    t.integer "device_id"
+    t.string "marker"
+    t.datetime "date_test"
+    t.string "channel"
+    t.integer "volume"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "setts", force: :cascade do |t|
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tests", force: :cascade do |t|
@@ -40,7 +62,6 @@ ActiveRecord::Schema.define(version: 2022_09_16_115835) do
 
   create_table "tests_devices", force: :cascade do |t|
     t.integer "device_id"
-    t.string "marker"
     t.datetime "date_test"
     t.string "sample_barcode"
     t.integer "threshold"
@@ -49,19 +70,10 @@ ActiveRecord::Schema.define(version: 2022_09_16_115835) do
     t.string "result_flua"
     t.string "result_ipc"
     t.string "result_monkeypox"
-    t.string "conclusion_covid"
-    t.string "conclusion_flub"
-    t.string "conclusion_flua"
-    t.string "conclusion_ipc"
-    t.string "conclusion_monkeypox"
-    t.integer "volume_covid"
-    t.integer "volume_flub"
-    t.integer "volume_lua"
-    t.integer "volume_ipc"
-    t.integer "volume_monkeypox"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "marker"
   end
 
   create_table "users", force: :cascade do |t|

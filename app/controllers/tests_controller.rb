@@ -20,6 +20,7 @@ class TestsController < ApplicationController
     @test = Test.create(test_params)
 
     if @test.save
+      
       redirect_to @test, notice: 'Your code successfully created.'
     else
       render :new

@@ -1,0 +1,2 @@
+class TestDevice < ApplicationRecord
+end
