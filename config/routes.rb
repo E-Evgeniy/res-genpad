@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   resources :tests
   resources :addresses
 
-  root to: 'codes#index'
+  root to: 'generals#index'
+
+  get 'general', to: 'generals#index', as: :general
 end

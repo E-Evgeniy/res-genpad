@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_19_120939) do
+ActiveRecord::Schema.define(version: 2022_09_21_111801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,16 +32,16 @@ ActiveRecord::Schema.define(version: 2022_09_19_120939) do
     t.integer "device_id"
     t.string "marker"
     t.datetime "date_test"
-    t.string "channel"
-    t.integer "volume"
+    t.string "name_channel_1"
+    t.integer "volume_channel_1"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "setts", force: :cascade do |t|
-    t.string "address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "name_channel_2"
+    t.string "name_channel_3"
+    t.string "name_channel_4"
+    t.integer "volume_channel_2"
+    t.integer "volume_channel_3"
+    t.integer "volume_channel_4"
   end
 
   create_table "tests", force: :cascade do |t|
@@ -65,15 +65,22 @@ ActiveRecord::Schema.define(version: 2022_09_19_120939) do
     t.datetime "date_test"
     t.string "sample_barcode"
     t.integer "threshold"
-    t.string "result_covid"
-    t.string "result_flub"
-    t.string "result_flua"
-    t.string "result_ipc"
-    t.string "result_monkeypox"
+    t.string "result_channel_1"
+    t.string "result_channel_2"
+    t.string "result_channel_3"
+    t.string "result_channel_4"
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "marker"
+    t.string "name_channel_1"
+    t.string "name_channel_2"
+    t.string "name_channel_3"
+    t.string "name_channel_4"
+    t.string "time_channel_1"
+    t.string "time_channel_2"
+    t.string "time_channel_3"
+    t.string "time_channel_4"
   end
 
   create_table "users", force: :cascade do |t|

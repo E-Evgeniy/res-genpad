@@ -18,9 +18,9 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.create(test_params)
-
+  
     if @test.save
-      
+      CreateReport.new_report(@test)
       redirect_to @test, notice: 'Your code successfully created.'
     else
       render :new
@@ -42,11 +42,11 @@ class TestsController < ApplicationController
 
   private
 
-  def load_code
+  def load_test
     @test = Test.find(params[:id])
   end
 
-  def code_params
+  def test_params
     params.require(:test).permit(:marker, :configuration_number, :configuration_text,
                                  :cartridge_type, :reagent, :production_date, :testing_date, :code,
                                  :conclusion, :description)
