@@ -1,0 +1,6 @@
+<p class = "h_result"><%= @test.testing_date %>  <%= @test.header %> от <%= @test.production_date %> </p>
+<p class = "b_desc">Конфигурация <%= @test.configuration_number %></p>
+<p class = "u_desc"><b>Cartridge type:</b> <%= @test.cartridge_type %></p>
+<p class = "u_desc"><b>Configuration:</b> <%= @test.configuration_text %></p>
+<p class = "u_desc"><b>Reagents:</b> <%= @test.reagent %></p>
+<p class = "u_desc"><b>The test has been completed:</b> <%= @test.user.last_name %> <%= @test.user.first_name %></p>

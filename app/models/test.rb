@@ -1,3 +1,5 @@
 class Test < ApplicationRecord
-  belongs_to :test, class_name: "test", foreign_key: "test_id"
+  belongs_to :code
+  belongs_to :user
+  has_many :hash_test_device
 end

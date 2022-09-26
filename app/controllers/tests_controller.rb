@@ -18,10 +18,20 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.create(test_params)
-  
-    if @test.save
-      CreateReport.new_report(@test)
-      redirect_to @test, notice: 'Your code successfully created.'
+    @test.code_id = Code.find_by(code: test_params["code_id"]).id
+    check_marker = Test.find_by(marker: @test.marker)
+    @test.user_id = current_user.id
+    if check_marker.nil?
+      render :new, notice: 'The token marker be unique'
+    else
+     save_test(@test)
+    end  
+  end
+
+  def save_test(test)
+    if test.save
+      CreateReport.new_report(test)
+      redirect_to test, notice: 'Your code successfully created.'
     else
       render :new
     end
@@ -48,7 +58,7 @@ class TestsController < ApplicationController
 
   def test_params
     params.require(:test).permit(:marker, :configuration_number, :configuration_text,
-                                 :cartridge_type, :reagent, :production_date, :testing_date, :code,
-                                 :conclusion, :description)
+                                 :cartridge_type, :reagent, :production_date, :testing_date, :code_id,
+                                 :conclusion, :description, :user_id, :header, :fluid)
   end
 end

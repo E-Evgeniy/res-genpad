@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_21_111801) do
+ActiveRecord::Schema.define(version: 2022_09_26_121022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 2022_09_21_111801) do
 
   create_table "codes", force: :cascade do |t|
     t.string "code"
+    t.integer "threshold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "threshold"
   end
 
   create_table "result_tests", force: :cascade do |t|
@@ -57,7 +57,11 @@ ActiveRecord::Schema.define(version: 2022_09_21_111801) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "header"
+    t.bigint "user_id", null: false
+    t.string "fluid"
     t.index ["code_id"], name: "index_tests_on_code_id"
+    t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
   create_table "tests_devices", force: :cascade do |t|
@@ -98,4 +102,5 @@ ActiveRecord::Schema.define(version: 2022_09_21_111801) do
   end
 
   add_foreign_key "tests", "codes"
+  add_foreign_key "tests", "users"
 end

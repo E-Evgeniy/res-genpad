@@ -25,6 +25,7 @@ class CreateReport
   end
 
   def self.export_data(file_with_data, marker)
+
     hash_test_device = {}
     file_with_data.each_with_index do |row, index|
       next if index == 0
@@ -69,10 +70,10 @@ class CreateReport
     td.time_channel_2 = hash_test_device['time_channel_2']
     td.time_channel_3 = hash_test_device['time_channel_3']
     td.time_channel_4 = hash_test_device['time_channel_4']
-    td.name_channel_1 = hash_test_device['name_channel_1']
-    td.name_channel_2 = hash_test_device['name_channel_2']
-    td.name_channel_3 = hash_test_device['name_channel_3']
-    td.name_channel_4 = hash_test_device['name_channel_4']
+    td.result_channel_1 = hash_test_device['result_channel_1']
+    td.result_channel_2 = hash_test_device['result_channel_2']
+    td.result_channel_3 = hash_test_device['result_channel_3']
+    td.result_channel_4 = hash_test_device['result_channel_4']
     td.status = hash_test_device['status']
     td.save
   end
@@ -104,24 +105,22 @@ class CreateReport
       hash_test_device[h_key] = row[0].downcase
 
       h_key = 'time_channel_' + (index-4).to_s
-      h_volume = row[2].match(/\d{2}[\s\d-]+/)
-      if h_volume.nil?
-        h_volume = "'N/a'"
-      else
-        h_volume = h_volume[0].to_s.gsub(/\s+/, "")
-      end
-      s = "hash_test_device['" + h_key + "'] = " + h_volume
+      #h_volume = row[2].match(/\d{2}[\s\d-]+/)
+      s = "hash_test_device['" + h_key + "'] = " + "'" + row[2] + "'"
       eval(s)
-      puts('row =============',row)
+      puts('row = ',row)
+      puts('row[0] = ',row[0])
+      puts('row[1] = ',row[1])
+      puts('row[2] = ',row[2])
+      puts('row[3] = ',row[3])
+      puts('row[4] = ',row[4])
+
       h_key = 'result_channel_' +  + (index-4).to_s
       s = "hash_test_device['" + h_key + "'] = " + "'" + row[4] + "'"
-      puts(s)
       eval(s)
-      puts('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     when 9
-      hash_test_device['status'] = row[0].slice! 'STATUS: '
+      hash_test_device['status'] = row[1]
     end
-
     hash_test_device
   end
 
