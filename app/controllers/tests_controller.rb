@@ -7,6 +7,7 @@ class TestsController < ApplicationController
   end
 
   def show
+    @result_test = ResultTest.result(@test)
   end
 
   def new
@@ -16,30 +17,25 @@ class TestsController < ApplicationController
   def edit
   end
 
-  def create
-    test_params_new = test_params
-
-    s = "redirect_to new_test_path, notice: 'The entered code does not exist'"
-           
-    return eval(s) if !Code.existence(test_params["code_id"]).exists?
-    test_params_new['code_id'] = Code.find_by(code: test_params["code_id"]).id
-    @test = Test.create(test_params_new)
-    check_marker = Test.find_by(marker: @test.marker)
+  def create_test(params)
+    @test = Test.create(params)
     @test.user_id = current_user.id
-    if check_marker.nil?
-      save_test(@test)
-    else
-      redirect_to new_test_path, notice: 'The entered token already exists'
-    end  
-  end
-
-  def save_test(test)
-    if test.save
-      CreateReport.new_report(test)
-      redirect_to test, notice: 'Your code successfully created.'
+    if @test.save
+      CreateReport.new_report(@test)
+      redirect_to @test, notice: 'Your code successfully created.'
     else
       render :new
     end
+  end
+
+  def create
+    result = Check.check_test_params(test_params)
+    puts('result',result)
+    if result['test_params'].nil?
+      return eval(result['alert'])
+    else
+      create_test(result['test_params'])
+    end            
   end
 
   def update

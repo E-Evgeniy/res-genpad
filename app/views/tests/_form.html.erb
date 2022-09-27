@@ -6,7 +6,7 @@
   </p>
 
     <p>
-    <%= form.label 'Code' %><br>
+    <%= form.label :code_id %><br>
     <%= form.text_field :code_id, id: :test_code_id%>
   </p>
 
@@ -16,52 +16,51 @@
   </p>
 
   <p>
-    <%= form.label 'Fliud' %><br>
+    <%= form.label :fluid %><br>
     <%= form.text_field :fluid, id: :test_fluid %>
   </p>
 
   <p>
-    <%= form.label 'Header' %><br>
+    <%= form.label :header %><br>
     <%= form.text_field :header, id: :test_header %>
   </p>
 
   <p>
-    <%= form.label 'Chip production date' %><br>
+    <%= form.label :production_date %><br>
     <%= form.date_field :production_date, id: :test_production_date %>
   </p>
 
    <p>
-    <%= form.label 'Testing date' %><br>
+    <%= form.label :testing_date %><br>
     <%= form.date_field :testing_date, id: :test_testing_date %>
   </p>
   <p>
 
-    <%= form.label 'Cartridge type' %><br>
+    <%= form.label :cartridge_type %><br>
     <%= form.text_area :cartridge_type, id: :test_cartridge_type %>
   </p>
 
   <p>
-    <%= form.label 'Configuration describe' %><br>
+    <%= form.label :configuration_text %><br>
     <%= form.text_area :configuration_text, id: :test_configuration_text %>
   </p>
 
   <p>
-    <%= form.label 'Reagents' %><br>
+    <%= form.label :reagent %><br>
     <%= form.text_area :reagent, id: :test_reagent %>
   </p>
 
   <p>
-    <%= form.label 'Conclusion' %><br>
+    <%= form.label :conclusion %><br>
     <%= form.text_area :conclusion, id: :test_conclusion %>
   </p>
 
   <p>
-    <%= form.label 'Note' %><br>
+    <%= form.label :description %><br>
     <%= form.text_area :description, id: :test_description %>
   </p>
   
 
-  <br>
+  <p><%= form.submit %><br></p>
 
-  <input type="submit" value="Accepct">
   <% end %>
