@@ -17,14 +17,19 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.create(test_params)
-    @test.code_id = Code.find_by(code: test_params["code_id"]).id
+    test_params_new = test_params
+
+    s = "redirect_to new_test_path, notice: 'The entered code does not exist'"
+           
+    return eval(s) if !Code.existence(test_params["code_id"]).exists?
+    test_params_new['code_id'] = Code.find_by(code: test_params["code_id"]).id
+    @test = Test.create(test_params_new)
     check_marker = Test.find_by(marker: @test.marker)
     @test.user_id = current_user.id
     if check_marker.nil?
-      render :new, notice: 'The token marker be unique'
+      save_test(@test)
     else
-     save_test(@test)
+      redirect_to new_test_path, notice: 'The entered token already exists'
     end  
   end
 
