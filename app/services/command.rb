@@ -19,4 +19,30 @@ class Command
 
     s_out1 + s_out2
   end
+
+  def self.ec_res_device(j)
+    "data_result['devices'][test_device.id]['time_channel_" + j.to_s + "]" + 
+       " = test_device.time_channel_" + j.to_s
+  end
+
+  def self.f_equate(a, b, j, k)
+    a + "['" + keys1(k) + j.to_s + "'] = " + b
+  end
+
+  def self.keys1(k)
+    case k
+    when 0
+      'count_device_channel_'  
+    when 1
+      'name_channel_'
+    when 2
+      'average_channel_'
+    when 3
+      'max_channel_'
+    when 4
+      'min_channel_'
+    when 5
+      'time_channel_'
+    end
+  end
 end

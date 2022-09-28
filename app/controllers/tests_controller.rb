@@ -7,7 +7,7 @@ class TestsController < ApplicationController
   end
 
   def show
-    @result_test = ResultTest.result(@test)
+    @result_test = CalcVolume.result(@test)
   end
 
   def new
