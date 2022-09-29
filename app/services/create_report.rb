@@ -1,4 +1,5 @@
 class CreateReport
+  
   def self.new_report(test)
     folder = Address.last.address
     all_files = Dir.entries(folder)
