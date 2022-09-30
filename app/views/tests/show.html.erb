@@ -89,5 +89,23 @@
   
 </table>
 
+<div class = 'graph'>
+<%= line_chart [
+  {name: "Workout", data: @graph1, color: "green"},
+  {name: "Workout", data: @graph2, width: "400px"}
+] %>
+</div>
+
+<% @result_graph.each do |key, device| %>
+  <p> <%= key %> </p>
+  <div class = 'graph'>
+  <%= line_chart [
+    {name: device['g1']['name'], data:  device['g1']['graph'], color: device['g1']['color']},
+    {name: device['g2']['name'], data:  device['g2']['graph'], color: device['g2']['color']}
+  ] %>
+</div>
+<% end %>
+
+
 
 <% end %>
