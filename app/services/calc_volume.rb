@@ -62,7 +62,7 @@ class CalcVolume
     if h_key.include? 'max'
       eval('data_result[h_key] = b.to_i if data_result[h_key] < b.to_i' )
     elsif h_key.include? 'min'
-      eval('data_result[h_key] = b.to_i if data_result[h_key] < b.to_i' )  
+      eval('data_result[h_key] = b.to_i if data_result[h_key] > b.to_i' )  
     else
       eval('data_result[h_key] += b.to_i')
     end
