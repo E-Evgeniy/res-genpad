@@ -38,14 +38,14 @@ class TestsController < ApplicationController
     #      }
     #      }
 
-    @result_graph ={'1245' => {
-      'g1' => {
-      'graph' => {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 },
-       'name' => "COVID", 'color' => 'green' },
-      'g2' => {
-        'graph' => {"1" => 2, "2" => 3, "3" => 11, "4" => 12, "5" => 10, "6" => 40 }, 
-         'name' => 'hjh',
-         'color' => 'yellow'}}}
+    # @result_graph ={'1245' => {
+    #   'g1' => {
+    #   'graph' => {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 },
+    #    'name' => "COVID", 'color' => 'green' },
+    #   'g2' => {
+    #     'graph' => {"1" => 2, "2" => 3, "3" => 11, "4" => 12, "5" => 10, "6" => 40 }, 
+    #      'name' => 'hjh',
+    #      'color' => 'yellow'}}}
 
    
   end

@@ -9,21 +9,6 @@
     border-collapse: collapse;
     margin-top: 30px;
     margin-left: 10px;
-    counter-reset: rowNumber;  
-}
-
-table {
-    counter-reset: rowNumber;
-}
-
-table tbody tr {
-    counter-increment: rowNumber;
-}
-
-table tr td:first-child::before {
-    content: counter(rowNumber);
-    min-width: 1em;
-    margin-right: 0.5em;
 }
 
 
