@@ -8,7 +8,7 @@ class TestsController < ApplicationController
 
   def show
     @result_test = CalcVolume.result(@test)
-    @result_graph = CalcGraph.graph(@test)
+    #@result_graph = CalcGraph.graph(@test)
 
     @graph1 = {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 }
   

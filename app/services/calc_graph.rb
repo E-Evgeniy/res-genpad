@@ -77,6 +77,11 @@ class CalcGraph
       hash_device['g0']['color'] = 'black'
    
       for j in (0..4)
+        eval("hash_device['g" + j.to_s + "'] = {}")
+        for n (0..1)
+          eval("hash_device['g" + j.to_s + "']['" + commands_init_graph(n) + "'] = {}")
+          eval("hash_device['g" + j.to_s + "']['" + commands_init_graph(n) + "'] = find_name_channel(j, rec)")
+        end
         eval("hash_device['g" + j.to_s + "']['name'] = {}")
         eval("hash_device['g" + j.to_s + "']['name'] = find_name_channel(j, rec)")
         eval("hash_device['g" + j.to_s + "']['color'] = find_color(j)")
@@ -94,5 +99,15 @@ class CalcGraph
       end
       init_begin_data(name, graph, color)
     end 
-  
+
+    def self.commands_init_graph(n)
+      case n
+      when 0
+        'name'  
+      when 1
+        'color'
+      when 2
+        'graph'
+      end
+    end 
   end
