@@ -8,6 +8,46 @@ class TestsController < ApplicationController
 
   def show
     @result_test = CalcVolume.result(@test)
+    @result_graph = CalcGraph.graph(@test)
+
+    @graph1 = {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 }
+  
+    @graph2 = {"1" => 1, "2" => 5, "3" => 10, "4" => 15, "5" => 20, "6" => 4 }
+
+     
+    #  @result_graph ={
+    #   '1245' => {
+    #        'g1' => {
+    #         'graph1' => {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 },
+    #         'name' => "COVID",
+    #         'color' => 'green'},
+    #    'g2' => {
+    #    'graph2' => {"1" => 1, "2" => 5, "3" => 10, "4" => 15, "5" => 20, "6" => 4 },
+    #      'name' => "IPC",
+    #      'color' => 'blue'}
+    #      }, 
+    #  '8621' => {
+    #    'g1' => {
+    #      'graph1' => {"1" => 10, "2" => 5, "3" => 1, "4" => 6, "5" => 5, "6" => 4 },
+    #      'name' => "COVID",
+    #      'color' => 'green'}, 
+    #    'g2' => {
+    #      'graph2' => {"1" => 1, "2" => 5, "3" => 10, "4" => 15, "5" => 20, "6" => 4 },
+    #      'name' => "IPC",
+    #      'color' => 'blue'}
+    #      }
+    #      }
+
+    @result_graph ={'1245' => {
+      'g1' => {
+      'graph' => {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 },
+       'name' => "COVID", 'color' => 'green' },
+      'g2' => {
+        'graph' => {"1" => 2, "2" => 3, "3" => 11, "4" => 12, "5" => 10, "6" => 40 }, 
+         'name' => 'hjh',
+         'color' => 'yellow'}}}
+
+   
   end
 
   def new
