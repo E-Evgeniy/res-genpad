@@ -96,11 +96,12 @@
   <p class = 'name_graph'> Device ID <%= key %> </p>
   <div class = 'graph'>
   <%= line_chart [
-    {name: device['g0']['name'], data:  device['g0']['graph'], color: device['g0']['color']},
     {name: device['g1']['name'], data:  device['g1']['graph'], color: device['g1']['color']},
     {name: device['g2']['name'], data:  device['g2']['graph'], color: device['g2']['color']},
     {name: device['g3']['name'], data:  device['g3']['graph'], color: device['g3']['color']},
-    {name: device['g4']['name'], data:  device['g4']['graph'], color: device['g4']['color']}
+    {name: device['g4']['name'], data:  device['g4']['graph'], color: device['g4']['color']},
+    {name: device['g0']['name'], data:  device['g0']['graph'], color: device['g0']['color']}
+    
   ] %>
 </div>
 <% end %>

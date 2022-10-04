@@ -30,8 +30,11 @@ class CalcGraph
 
     def self.generated_hash(rec)
       for j in (1..4)
+        puts('1', eval("rec['g" + j.to_s + "']['graph']"))
         eval("rec['g" + j.to_s + "']['graph'] = normalization(rec['g" + j.to_s + "']['graph']" + ")")
+        puts('2', eval("rec['g" + j.to_s + "']['graph']"))
         eval("rec['g" + j.to_s + "']['graph'] = change_graph(rec['g" + j.to_s + "']['graph']" + ")")
+        puts('3', eval("rec['g" + j.to_s + "']['graph']"))
       end
       rec
     end
@@ -52,7 +55,7 @@ class CalcGraph
         d = (j+3).to_s
         f = (j+4).to_s
         e = (j+5).to_s
-        if g[b] > g[a] && g[c] > g[b] && g[d] > g[c] && g[f] > g[d] && g[e] > g[f]
+        if g[b] > g[a] && g[c] > g[a] && g[d] > g[a] && g[f] > g[a] && g[e] > g[a]
             g[j] = g[b] - g[a]
         else
           g[a] = 0
@@ -93,7 +96,7 @@ class CalcGraph
   
     def self.find_name_channel(j, rec)
       if j == 0
-        ''
+        'threshold'
       else  
         eval("rec['name_channel_" + (j).to_s + "'].upcase")
       end  
@@ -121,7 +124,8 @@ class CalcGraph
         for n in (0..2)          
           if j == 0 && n == 2
             hash_device['g0']['graph'] = {}
-            hash_device['g0']['graph'] = {'0' => threshold, '90' => threshold}
+            hash_graph = rec_hash_graph(threshold)
+            hash_device['g0']['graph'] = hash_graph
           else
             hash_device = rec_hash_device(hash_device, n, j, rec)            
           end
@@ -130,6 +134,14 @@ class CalcGraph
       puts('0 hash_device =', hash_device)
       hash_device
     end 
+    
+    def self.rec_hash_graph(threshold)
+      hash_graph = {}  
+      for j in (1..79)
+        hash_graph[j.to_s] = threshold
+      end
+      hash_graph
+    end
 
     def self.rec_hash_device(hash_device, n, j, rec)
       eval("hash_device['g" + j.to_s + "']['" + commands_init_graph(n) + "'] = {}")

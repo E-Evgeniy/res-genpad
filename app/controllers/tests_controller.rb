@@ -10,10 +10,6 @@ class TestsController < ApplicationController
     @result_test = CalcVolume.result(@test)
     @result_graph = CalcGraph.graph(@test)
 
-    @graph1 = {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 }
-  
-    @graph2 = {"1" => 1, "2" => 5, "3" => 10, "4" => 15, "5" => 20, "6" => 4 }
-
      
     #  @result_graph ={
     #   '1245' => {
