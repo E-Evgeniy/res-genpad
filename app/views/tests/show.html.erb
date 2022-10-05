@@ -92,7 +92,7 @@
   
 </table>
 
-<% @result_graph.each do |key, device| %>
+<% @result_graphs.each do |key, device| %>
   <p class = 'name_graph'> Device ID <%= key %> </p>
   <div class = 'graph'>
   <%= line_chart [
@@ -106,6 +106,14 @@
 </div>
 <% end %>
 
-
+<p class = 'name_graph'> Общее отображение графиков</p>
+<% for j in (1..4) %>
+  <% if !@common_graph[j].empty? %>
+    <p class = 'name_graph'> <%= @common_graph[j+4] %> </p>
+    <div class = 'graph'>
+      <%= eval(@common_graph[j])%>
+    </div>
+  <% end %>
+<% end %>
 
 <% end %>

@@ -8,7 +8,10 @@ class TestsController < ApplicationController
 
   def show
     @result_test = CalcVolume.result(@test)
-    @result_graph = CalcGraph.graph(@test)
+    @result_graphs = CalcGraph.graph(@test)
+    @common_graph = CalcGraph.common_graph(@result_graphs)
+
+    #puts(@common_graph)
 
      
     #  @result_graph ={
@@ -56,12 +59,14 @@ class TestsController < ApplicationController
   def create_test(params)
     @test = Test.create(params)
     @test.user_id = current_user.id
-    if @test.save
-      CreateReport.new_report(@test)
-      redirect_to @test, notice: 'Your code successfully created.'
-    else
-      render :new
-    end
+    CreateReport.new_report(@test)   #DELETE!!!!!!!
+
+   # if @test.save
+    #  CreateReport.new_report(@test)
+   #   redirect_to @test, notice: 'Your code successfully created.'
+   # else
+    #  render :new
+    #end
   end
 
   def create

@@ -45,4 +45,49 @@ class Command
       'time_channel_'
     end
   end
+
+  def self.generator_color(j)
+    case j
+    when 0
+      'black'  
+    when 1
+      'red'
+    when 2
+      'yellow'
+    when 3
+      'blue'
+    when 4
+      'green'
+    when 5
+      'orange'  
+    when 6
+      'indigo'
+    when 7
+      'violet'
+    when 8
+      'brown'
+    when 9
+      'pink'
+    when 10
+      'grey'  
+    when 11
+      'olive'
+    when 12
+      'mint'
+    when 13
+      'lime'
+    when 14
+      'azure'
+    when 15
+      'lavender'  
+    when 16
+      'platinum'
+    when 17
+      'rust'
+    when 18
+      'silver'
+    when 19
+      'lilac'
+    end
+  end
 end

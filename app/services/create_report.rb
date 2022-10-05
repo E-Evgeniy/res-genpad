@@ -106,9 +106,20 @@ class CreateReport
       hash_test_device[h_key] = row[0].downcase
 
       h_key = 'time_channel_' + (index-4).to_s
-      #h_volume = row[2].match(/\d{2}[\s\d-]+/)
-      s = "hash_test_device['" + h_key + "'] = " + "'" + row[2] + "'"
+      h_volume = row[2].match(/\d{2}[\s\d-]+/)
+      
+      if row[2].match(/\d{2}[\s\d-]+/).nil?
+        h_volume = "N/A"
+        res_test_chanel = row[3]
+      else
+        h_volume = row[2]
+        res_test_chanel = row[4]
+      end
+
+      s = "hash_test_device['" + h_key + "'] = " + "'" + h_volume + "'"
+      puts('VOLUME = ', s)
       eval(s)
+
       puts('row = ',row)
       puts('row[0] = ',row[0])
       puts('row[1] = ',row[1])
@@ -117,7 +128,10 @@ class CreateReport
       puts('row[4] = ',row[4])
 
       h_key = 'result_channel_' +  + (index-4).to_s
-      s = "hash_test_device['" + h_key + "'] = " + "'" + row[4] + "'"
+       
+
+
+      s = "hash_test_device['" + h_key + "'] = " + "'" + res_test_chanel + "'"
       eval(s)
     when 9
       hash_test_device['status'] = row[1]

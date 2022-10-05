@@ -1,8 +1,60 @@
 class CalcGraph
     def self.graph(test)  # переделать запрос, добавить связи между таблицами
       com_data = ResultTest.find_by_sql(["SELECT * from result_tests where marker = ? order by device_id, created_at", test.marker])
-  
       data_passage(com_data, test.code.threshold)
+    end
+
+    def self.common_graph(result_hash)
+      graph = init_graph
+      i = 1
+      result_hash.each do |key, device|
+        for j in (1..4) 
+          graph[j] = rec_graph(j, graph[j], key, device, i) if !eval("device['g" + j.to_s + "']['name']").nil?
+        end
+        i += 1
+      end
+
+      device = result_hash.first[1]
+
+      for j in (1..4) 
+        if !eval("device['g" + j.to_s + "']['name']").nil?
+          graph[j] = rec_graph(0, graph[j], '', device, 0) 
+          graph[j] = "line_chart [" + graph[j] + "]"
+          graph[j + 4] = eval("device['g" + j.to_s + "']['name']").upcase
+        end
+      end
+
+      graph
+    end
+
+    def self.rec_graph(j, graph, key, device, i)
+      if graph.empty?
+        graph = generate_str(j, key, device, i)
+      else
+        graph = graph + ", " + generate_str(j, key, device, i)
+      end
+      graph
+    end
+
+    def self.generate_str(j, key, device, i)
+      if j == 0
+        name_g = 'threshold'
+      else
+        name_g = "Device ID " + key.to_s
+      end
+      puts("device['g" + j.to_s + "']['graph']")
+      data_g = eval("device['g" + j.to_s + "']['graph']")
+      puts(data_g)
+      color_g = Command.generator_color(i)
+      "{name: '" + name_g + "', data: " + (data_g).to_s + ", color: '" + color_g + "'}"
+    end        
+
+    def self.init_graph
+      graph = {}
+      for j in (1..4) 
+        graph[j] = ''
+      end
+      graph
     end
   
     def self.data_passage(com_data, threshold)
@@ -16,15 +68,12 @@ class CalcGraph
           result_hash[device_id] = hash_device if !hash_device.empty?
           hash_device = init_begin_data_device(rec, threshold) if check_volume(rec)
           device_id = rec.device_id
-        end        
-        
+        end                
       end 
       result_hash[device_id] = hash_device if result_hash[device_id].nil?
-
-       result_hash.each do |device_id, rec|
-         result_hash[device_id] = generated_hash(rec)
-       end
-      puts(result_hash)
+      result_hash.each do |device_id, rec|
+        result_hash[device_id] = generated_hash(rec)
+      end
       result_hash
     end
 
