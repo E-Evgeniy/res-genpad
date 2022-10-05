@@ -30,13 +30,21 @@ class CalcGraph
 
     def self.generated_hash(rec)
       for j in (1..4)
-        puts('1', eval("rec['g" + j.to_s + "']['graph']"))
         eval("rec['g" + j.to_s + "']['graph'] = normalization(rec['g" + j.to_s + "']['graph']" + ")")
-        puts('2', eval("rec['g" + j.to_s + "']['graph']"))
         eval("rec['g" + j.to_s + "']['graph'] = change_graph(rec['g" + j.to_s + "']['graph']" + ")")
-        puts('3', eval("rec['g" + j.to_s + "']['graph']"))
+        eval("rec['g" + j.to_s + "']['graph'] = sec_in_min(rec['g" + j.to_s + "']['graph']" + ")")
       end
       rec
+    end
+
+    def self.sec_in_min(g_sec)
+      g_min = {}
+      for j in (1..g_sec.size)
+        if j%2 == 0
+          g_min[(j/2).to_s] = g_sec[j.to_s]
+        end
+      end  
+      g_min    
     end
 
     def self.normalization(g)
@@ -48,7 +56,9 @@ class CalcGraph
     end
 
     def self.change_graph(g)
-      for j in (1..g.size - 5)
+      g['1'] = 0
+      for j in (2..g.size - 6)
+        i = (j-1).to_s
         a = j.to_s
         b = (j+1).to_s
         c = (j+2).to_s
@@ -56,9 +66,9 @@ class CalcGraph
         f = (j+4).to_s
         e = (j+5).to_s
         if g[b] > g[a] && g[c] > g[a] && g[d] > g[a] && g[f] > g[a] && g[e] > g[a]
-            g[j] = g[b] - g[a]
+            g[a] = g[b]
         else
-          g[a] = 0
+          g[a] = g[i]
         end
       end
       g
@@ -137,7 +147,7 @@ class CalcGraph
     
     def self.rec_hash_graph(threshold)
       hash_graph = {}  
-      for j in (1..79)
+      for j in (1..40)
         hash_graph[j.to_s] = threshold
       end
       hash_graph
