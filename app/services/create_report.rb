@@ -8,14 +8,16 @@ class CreateReport
   end
 
   def self.find_results(all_files, marker, folder)
+    require 'csv'
+    result_report = {}
     all_files.each do |file|
       if file.include? marker
-        adress = folder + file
-        require 'csv'
-        file_with_data = File.open(adress, "r:ISO-8859-1")
+        result_report['files exist'] = true     
+        file_with_data = File.open(folder + file, "r:ISO-8859-1")
         export_data(file_with_data, marker)
       end
     end
+    result_report
   end 
 
   def self.delete_chr(row)
@@ -26,18 +28,51 @@ class CreateReport
   end
 
   def self.export_data(file_with_data, marker)
-
     hash_test_device = {}
     file_with_data.each_with_index do |row, index|
       next if index == 0
-      row = delete_chr(row)
-      if index <= 9
-        hash_test_device = find_hash_test_device(hash_test_device, row, index)
-        create_test_device(hash_test_device, marker) if index == 9
+      Uevice(hash_test_device, marker) if index == 9
       else
         create_result_test(marker, hash_test_device, row)
       end
     end
+  end
+
+  def self.find_hash_test_device(hash_test_device, row, index)
+    case index
+    when 1
+      hash_test_device['date_test'] = find_date_test(row)
+    when 2
+      hash_test_device['device_id'] = row[2]
+    when 3
+      hash_test_device['sample_barcode'] = find_sample_barcode(row)
+    when 4
+      hash_test_device[row[0].downcase] = row[1]
+    when 5..8
+      h_key = 'name_channel_' + (index-4).to_s
+      hash_test_device[h_key] = row[0].downcase
+
+      h_key = 'time_channel_' + (index-4).to_s
+      h_volume = row[2].match(/\d{2}[\s\d-]+/)
+      
+      if (row[2] =~ /[0-9]/).nil?
+        h_volume = "N/A"
+        res_test_chanel = row[3]
+      else
+        h_volume = row[2]
+        res_test_chanel = row[4]
+      end
+
+      s = "hash_test_device['" + h_key + "'] = " + "'" + h_volume + "'"
+      eval(s)
+
+      h_key = 'result_channel_' +  + (index-4).to_s
+      s = "hash_test_device['" + h_key + "'] = " + "'" + res_test_chanel + "'"
+      eval(s)
+    when 9
+      hash_test_device['status'] = row[1]
+    end
+    hash_test_device
   end
 
   def self.create_result_test(marker, hash_test_device, row)
@@ -91,53 +126,7 @@ class CreateReport
     sample_barcode
   end
 
-  def self.find_hash_test_device(hash_test_device, row, index)
-    case index
-    when 1
-      hash_test_device['date_test'] = find_date_test(row)
-    when 2
-      hash_test_device['device_id'] = row[2]
-    when 3
-      hash_test_device['sample_barcode'] = find_sample_barcode(row)
-    when 4
-      hash_test_device[row[0].downcase] = row[1]
-    when 5..8
-      h_key = 'name_channel_' + (index-4).to_s
-      hash_test_device[h_key] = row[0].downcase
-
-      h_key = 'time_channel_' + (index-4).to_s
-      h_volume = row[2].match(/\d{2}[\s\d-]+/)
-      
-      if row[2].match(/\d{2}[\s\d-]+/).nil?
-        h_volume = "N/A"
-        res_test_chanel = row[3]
-      else
-        h_volume = row[2]
-        res_test_chanel = row[4]
-      end
-
-      s = "hash_test_device['" + h_key + "'] = " + "'" + h_volume + "'"
-      puts('VOLUME = ', s)
-      eval(s)
-
-      puts('row = ',row)
-      puts('row[0] = ',row[0])
-      puts('row[1] = ',row[1])
-      puts('row[2] = ',row[2])
-      puts('row[3] = ',row[3])
-      puts('row[4] = ',row[4])
-
-      h_key = 'result_channel_' +  + (index-4).to_s
-       
-
-
-      s = "hash_test_device['" + h_key + "'] = " + "'" + res_test_chanel + "'"
-      eval(s)
-    when 9
-      hash_test_device['status'] = row[1]
-    end
-    hash_test_device
-  end
+  
 
   def self.find_date_test(string_with_date)
     date_s = string_with_date[1].gsub('/','.')

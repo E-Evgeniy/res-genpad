@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_26_121022) do
+ActiveRecord::Schema.define(version: 2022_10_11_195955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_09_26_121022) do
     t.integer "volume_channel_2"
     t.integer "volume_channel_3"
     t.integer "volume_channel_4"
+    t.integer "unit_of_time"
   end
 
   create_table "tests", force: :cascade do |t|

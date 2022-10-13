@@ -1,3 +1,4 @@
+<div class = 'show_test'>
 <p class = "href_general"><%= link_to 'To the main page', general_path %></p>
 
 <p class = "h_result"><%= @test.testing_date %>  <%= @test.header %> от <%= @test.production_date %> </p>
@@ -6,11 +7,14 @@
 <p class = "u_desc"><b>Configuration:</b> <%= @test.configuration_text %></p>
 <p class = "u_desc"><b>Reagents:</b> <%= @test.reagent %></p>
 <p class = "u_desc"><b>Solution:</b> <%= @test.fluid %></p>
+<% if !@test.description.empty? %>
+<p class = "u_desc"><b>Замечание:</b> <%= @test.description %></p>
+<% end %>
 <p class = "u_desc"><b>The test has been completed:</b> <%= @test.user.last_name %> <%= @test.user.first_name %></p>
 
 
 <% if @result_test.nil? %>
-  Нет данных для отображения
+  Нет данных для отображения, необходимо перепроверить результаты.
 <% else %>
   <table class="result_table">
     <col width="50">
@@ -78,34 +82,30 @@
   <tr>
     <td class = 'th_result'><%= @result_test['max_channel_1'] %></td>
     <td class = 'th_result'><%= @result_test['min_channel_1'] %></td>
-    <td class = 'th_result'><%= @result_test['average_channel_1'] %></td>
+    <td class = 'th_result'><%= @result_test['average_channel_1'].round(2) if !@result_test['average_channel_1'].nil? %></td>
     <td class = 'th_result'><%= @result_test['max_channel_2'] %></td>
     <td class = 'th_result'><%= @result_test['min_channel_2'] %></td>
-    <td class = 'th_result'><%= @result_test['average_channel_2'] %></td>
+    <td class = 'th_result'><%= @result_test['average_channel_2'].round(2) if !@result_test['average_channel_2'].nil? %></td>
     <td class = 'th_result'><%= @result_test['max_channel_3'] %></td>
     <td class = 'th_result'><%= @result_test['min_channel_3'] %></td>
-    <td class = 'th_result'><%= @result_test['average_channel_3'] %></td>
+    <td class = 'th_result'><%= @result_test['average_channel_3'].round(2) if !@result_test['average_channel_3'].nil? %></td>
     <td class = 'th_result'><%= @result_test['max_channel_4'] %></td>
     <td class = 'th_result'><%= @result_test['min_channel_4'] %></td>
-    <td class = 'th_result'><%= @result_test['average_channel_4'] %></td>
+    <td class = 'th_result'><%= @result_test['average_channel_4'].round(2) if !@result_test['average_channel_4'].nil? %></td>
   </tr>
   
 </table>
 
-<% @result_graphs.each do |key, device| %>
+<% if !@device_graphs.nil? %>
+<% @device_graphs.each do |key, device| %>
   <p class = 'name_graph'> Device ID <%= key %> </p>
   <div class = 'graph'>
-  <%= line_chart [
-    {name: device['g1']['name'], data:  device['g1']['graph'], color: device['g1']['color']},
-    {name: device['g2']['name'], data:  device['g2']['graph'], color: device['g2']['color']},
-    {name: device['g3']['name'], data:  device['g3']['graph'], color: device['g3']['color']},
-    {name: device['g4']['name'], data:  device['g4']['graph'], color: device['g4']['color']},
-    {name: device['g0']['name'], data:  device['g0']['graph'], color: device['g0']['color']}
-    
-  ] %>
+  <%= eval(device)%>
 </div>
 <% end %>
+<% end %>
 
+<% if !@common_graph.nil? %>
 <p class = 'name_graph'> Общее отображение графиков</p>
 <% for j in (1..4) %>
   <% if !@common_graph[j].empty? %>
@@ -115,5 +115,7 @@
     </div>
   <% end %>
 <% end %>
+<% end %>
 
 <% end %>
+</div>

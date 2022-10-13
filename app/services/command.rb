@@ -90,4 +90,29 @@ class Command
       'lilac'
     end
   end
+
+  def self.save_test_device(j)
+    case j
+    when -2
+      'status'
+    when -1
+      'sample_barcode'
+    when 0
+      'threshold'
+    when 1
+      'marker'
+    when 2
+      'date_test'
+    when 3
+      'device_id'
+    when 4
+      'name_channel_'
+    when 5
+      'time_channel_'  
+    when 6
+      'result_channel_'
+    when 7
+      'volume_channel_'
+    end
+  end  
 end

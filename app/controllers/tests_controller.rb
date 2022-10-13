@@ -8,45 +8,14 @@ class TestsController < ApplicationController
 
   def show
     @result_test = CalcVolume.result(@test)
-    @result_graphs = CalcGraph.graph(@test)
-    @common_graph = CalcGraph.common_graph(@result_graphs)
-
-    #puts(@common_graph)
-
-     
-    #  @result_graph ={
-    #   '1245' => {
-    #        'g1' => {
-    #         'graph1' => {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 },
-    #         'name' => "COVID",
-    #         'color' => 'green'},
-    #    'g2' => {
-    #    'graph2' => {"1" => 1, "2" => 5, "3" => 10, "4" => 15, "5" => 20, "6" => 4 },
-    #      'name' => "IPC",
-    #      'color' => 'blue'}
-    #      }, 
-    #  '8621' => {
-    #    'g1' => {
-    #      'graph1' => {"1" => 10, "2" => 5, "3" => 1, "4" => 6, "5" => 5, "6" => 4 },
-    #      'name' => "COVID",
-    #      'color' => 'green'}, 
-    #    'g2' => {
-    #      'graph2' => {"1" => 1, "2" => 5, "3" => 10, "4" => 15, "5" => 20, "6" => 4 },
-    #      'name' => "IPC",
-    #      'color' => 'blue'}
-    #      }
-    #      }
-
-    # @result_graph ={'1245' => {
-    #   'g1' => {
-    #   'graph' => {"1" => 2, "2" => 3, "3" => 5, "4" => 6, "5" => 5, "6" => 4 },
-    #    'name' => "COVID", 'color' => 'green' },
-    #   'g2' => {
-    #     'graph' => {"1" => 2, "2" => 3, "3" => 11, "4" => 12, "5" => 10, "6" => 40 }, 
-    #      'name' => 'hjh',
-    #      'color' => 'yellow'}}}
-
-   
+    puts(@result_test)
+    if @result_test['name_channel_1'] != 'ERROR' 
+      result_graphs = CalcGraph.graph(@test)
+      @device_graphs = CalcGraph.hash_formation_with_graphs(result_graphs)
+      @common_graph = CalcGraph.common_graph(result_graphs)
+    else
+      @result_test = nil
+    end
   end
 
   def new
@@ -57,21 +26,24 @@ class TestsController < ApplicationController
   end
 
   def create_test(params)
+    if !Check.files_exists(params[:marker])
+      redirect_to new_test_path, alert: 'Тестов с маркером ' + params[:marker].to_s + ' не найдено'
+      return
+    end  
+
     @test = Test.create(params)
     @test.user_id = current_user.id
-    CreateReport.new_report(@test)   #DELETE!!!!!!!
-
-   # if @test.save
-    #  CreateReport.new_report(@test)
-   #   redirect_to @test, notice: 'Your code successfully created.'
-   # else
-    #  render :new
-    #end
+    ReadFile.new_report(@test)
+   if @test.save
+     
+     redirect_to @test, notice: 'Your report successfully created.'
+   else
+     render :new
+    end
   end
 
   def create
     result = Check.check_test_params(test_params)
-    puts('result',result)
     if result['test_params'].nil?
       return eval(result['alert'])
     else

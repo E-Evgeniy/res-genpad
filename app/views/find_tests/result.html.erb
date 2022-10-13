@@ -1,0 +1,28 @@
+<p class = "href_general"><%= link_to 'To the main page', general_path %></p>
+<p><%= link_to 'Поискать ещё', find_test_path %></p>
+
+<% if @tests.nil? %>
+  <h3> Ничего не нашлось </h3>
+<% else %>
+  <table class="result_table">
+    <col width="50">
+    <col width="100">
+    <col width="150">
+    <col width="150">
+    <tr>
+      <th class = 'th_result'>№</th>
+      <th class = 'th_result'>Дата теста</th>
+      <th class = 'th_result'>Маркер теста</th>
+      <th class = 'th_result'>Тест провёл</th>
+    </tr>
+    <% i = 1 %>
+    <% @tests.each do |test| %>
+      <tr>
+        <td class = 'th_result'><%= i %></td>
+        <td class = 'th_result'><%= link_to test.testing_date.strftime("%d-%m-%Y"), test_path(test) %></td>
+        <td class = 'th_result'><%= test.marker %></td>
+        <td class = 'th_result'><%= test.user.last_name %> <%= test.user.first_name %></td>
+        <% i += 1 %>
+      </tr>
+    <% end %>
+<% end %>

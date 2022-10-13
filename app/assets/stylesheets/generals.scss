@@ -1,3 +1,20 @@
-// Place all the styles related to the Generals controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.gen_button {
+    border: none;
+    border-radius: 7px;
+    padding: 10px 25px;
+    background: #2400a7e1;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+ }
+
+ .general_index {
+    margin-top: 10px;
+    margin-left: 30px;
+ }
+
+ .block_button {
+    margin-top: 30px;
+    
+ }

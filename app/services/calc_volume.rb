@@ -7,6 +7,9 @@ class CalcVolume
     data_result['devices'] = {}
 
     test_devices.each do |test_device|
+      if data_result['name_channel_1'] == 'ERROR'
+        data_result = find_rec_start_fields(data_result,test_device)
+      end
       hash_test_device = {}
       a = 'hash_test_device'
 
@@ -36,7 +39,6 @@ class CalcVolume
       eval("vol_average = data_result['average_channel_" +j.to_s + "']")
       eval("count = data_result['count_device_channel_" +j.to_s + "']")
       if !count.nil?
-        puts('vol_average/count.to_f = ' + (vol_average/count.to_f).to_s)
         s1 = "vol_average = data_result['average_channel_" +j.to_s + "'] = "
         s2 = 'vol_average/count.to_f'
         eval(s1 + s2)
@@ -73,6 +75,7 @@ class CalcVolume
 
   def self.find_rec_start_fields(data_result, test_device)
     a = 'data_result'
+    
     for j in (1..4)
       for k in (0..4)
         b = 'test_device.name_channel_' + j.to_s

@@ -27,4 +27,14 @@ class Check
     end 
     result
   end
+
+  def self.files_exists(marker)
+    folder = Address.last.address
+    all_files = Dir.entries(folder)
+    result = false
+    all_files.each do |file|
+      result = true if file.include? marker
+    end
+    result
+  end
 end

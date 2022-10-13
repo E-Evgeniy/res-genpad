@@ -1,61 +1,99 @@
 class CalcGraph
-    def self.graph(test)  # переделать запрос, добавить связи между таблицами
-      com_data = ResultTest.find_by_sql(["SELECT * from result_tests where marker = ? order by device_id, created_at", test.marker])
-      data_passage(com_data, test.code.threshold)
-    end
+  def self.graph(test)  # переделать запрос, добавить связи между таблицами
+    com_data = ResultTest.find_by_sql(["SELECT * from result_tests where marker = ? order by device_id, created_at", test.marker])
+    data_passage(com_data, test.code.threshold)
+  end
 
-    def self.common_graph(result_hash)
-      graph = init_graph
-      i = 1
-      result_hash.each do |key, device|
-        for j in (1..4) 
-          graph[j] = rec_graph(j, graph[j], key, device, i) if !eval("device['g" + j.to_s + "']['name']").nil?
-        end
-        i += 1
-      end
-
-      device = result_hash.first[1]
-
+  def self.hash_formation_with_graphs(result_hash)
+    result_graph = {}
+    result_hash.each do |key, device|  # record analyzed values     
+      graph = ''
       for j in (1..4) 
-        if !eval("device['g" + j.to_s + "']['name']").nil?
-          graph[j] = rec_graph(0, graph[j], '', device, 0) 
-          graph[j] = "line_chart [" + graph[j] + "]"
-          graph[j + 4] = eval("device['g" + j.to_s + "']['name']").upcase
-        end
+        next if check_none(j, device)
+        graph = rec_result_graph(graph, j, device)
       end
 
-      graph
+      if !graph.empty?
+        graph = rec_result_graph(graph, 0, device)  #rec_threshold
+        result_graph[key] = {}
+        result_graph[key] = "line_chart [" + graph + "]"
+      end 
     end
+    result_graph
+  end
 
-    def self.rec_graph(j, graph, key, device, i)
-      if graph.empty?
-        graph = generate_str(j, key, device, i)
-      else
-        graph = graph + ", " + generate_str(j, key, device, i)
-      end
-      graph
+  def self.rec_result_graph(graph, j, device)
+    if graph.empty?
+      graph = generate_str_res_h(j, device)
+    else
+      graph = graph + ", " + generate_str_res_h(j, device)
     end
+    graph
+  end
 
-    def self.generate_str(j, key, device, i)
-      if j == 0
-        name_g = 'threshold'
-      else
-        name_g = "Device ID " + key.to_s
-      end
-      puts("device['g" + j.to_s + "']['graph']")
-      data_g = eval("device['g" + j.to_s + "']['graph']")
-      puts(data_g)
-      color_g = Command.generator_color(i)
-      "{name: '" + name_g + "', data: " + (data_g).to_s + ", color: '" + color_g + "'}"
-    end        
+  def self.generate_str_res_h(j, device)
+    name_g = eval("device['g" + j.to_s + "']['name']")
+    data_g = eval("device['g" + j.to_s + "']['graph']")
+    color_g = eval("device['g" + j.to_s + "']['color']")
+    "{name: '" + name_g + "', data: " + (data_g).to_s + ", color: '" + color_g + "'}"
+  end
 
-    def self.init_graph
-      graph = {}
+  def self.common_graph(result_hash)
+    graph = init_graph
+    i = 1
+    result_hash.each do |key, device|  # record analyzed values    
       for j in (1..4) 
-        graph[j] = ''
+        next if check_none(j, device)
+        graph[j] = rec_graph(j, graph[j], key, device, i) if !eval("device['g" + j.to_s + "']['name']").nil?
       end
-      graph
+      i += 1
     end
+   rec_threshold_and_form_result_graph(graph, result_hash.first[1])
+  end
+
+  def self.rec_threshold_and_form_result_graph(graph, device)
+    for j in (1..4) 
+      next if check_none(j, device)
+      if !eval("device['g" + j.to_s + "']['name']").nil?
+        graph[j] = rec_graph(0, graph[j], '', device, 0) 
+        graph[j] = "line_chart [" + graph[j] + "]"
+        graph[j + 4] = eval("device['g" + j.to_s + "']['name']").upcase
+      end
+    end
+    graph
+  end
+
+  def self.rec_graph(j, graph, key, device, i)
+    if graph.empty?
+      graph = generate_str(j, key, device, i)
+    else
+      graph = graph + ", " + generate_str(j, key, device, i)
+    end
+    graph
+  end
+
+  def self.check_none(j, device)
+    eval("'NONE' == device['g" + j.to_s + "']['name']" )
+  end
+
+  def self.generate_str(j, key, device, i)
+    if j == 0
+      name_g = 'threshold'
+    else
+      name_g = "Device ID " + key.to_s
+    end
+    data_g = eval("device['g" + j.to_s + "']['graph']")
+    color_g = Command.generator_color(i)
+    "{name: '" + name_g + "', data: " + (data_g).to_s + ", color: '" + color_g + "'}"
+  end        
+
+  def self.init_graph
+    graph = {}
+    for j in (1..4) 
+      graph[j] = ''
+    end
+    graph
+  end
   
     def self.data_passage(com_data, threshold)
       device_id = 0
@@ -119,6 +157,12 @@ class CalcGraph
         else
           g[a] = g[i]
         end
+        g[a] = g[i] if g[a] < g[i]
+      end
+      for j in (g.size - 5..g.size)
+        a = j.to_s
+        b = (j-1).to_s
+        g[a] = g[b] if g[a] < g[b]
       end
       g
     end
@@ -142,9 +186,13 @@ class CalcGraph
   
     def self.record_begin_data_device(hash_device, rec)
       for j in (1..4)
-        hash_device['name'][j] = find_name_channel(j, rec)
-        hash_device['graph'][j] = find_volume_graph(j, rec)
-        hash_device['color'][j] = find_color(j)
+        name = find_name_channel(j, rec)
+        puts('NAME = ',name)
+        if name != "none"
+          hash_device['name'][j] = name
+          hash_device['graph'][j] = find_volume_graph(j, rec)
+          hash_device['color'][j] = find_color(j)
+        end        
       end
       hash_device
     end
@@ -190,7 +238,6 @@ class CalcGraph
           end
         end
       end  
-      puts('0 hash_device =', hash_device)
       hash_device
     end 
     

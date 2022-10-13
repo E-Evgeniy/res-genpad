@@ -4,8 +4,9 @@ en:
   generals:
     index:
       header: "Creating a report"
-      new_test: "Create a new test"
-      codes:  "Table with codes for tests"
+      new_test: "Create a new report"
+      find_test: "Search for reports"
+      codes:  "Table with codes for reports"
       address: "Address of the folder of files with hardware test data"
 
   tests:
