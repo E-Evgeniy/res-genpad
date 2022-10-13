@@ -3,26 +3,14 @@
   <h1><%= t('.header') %> </h1>
 
   <div class = 'block_button'>
-    <%= button_to t('.new_test'), new_test_url, method: :get, class:"gen_button", params: { lang: I18n.locale } %>
+    <%= button_to t('.new_test'), new_test_path, method: :get, class:"gen_button", params: { lang: I18n.locale } %>
     <br>
-    <form action=find_test >
-      <button class='gen_button'> Поиск теста </button>
-     </form>
+    <%= button_to t('.find_test'), find_test_path, method: :get, class:"gen_button", params: { lang: I18n.locale } %>
     <br>
-    <form action=codes >
-      <button class='gen_button'><%=  t('.codes') %></button>
-    </form>
+    <%= button_to t('.codes'), codes_path, method: :get, class:"gen_button", params: { lang: I18n.locale } %>
     <br>
-    <form action=addresses >
-      <button class='gen_button'><%=  t('.address') %></button>
-    </form>
-
+    <%= button_to t('.address'), addresses_path, method: :get, class:"gen_button", params: { lang: I18n.locale } %>
   </div>
-
-
-
-
-
 </div>
 
 

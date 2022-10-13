@@ -1,6 +1,14 @@
 ru:
   hello: "Привет мир"
 
+  find_tests:
+    find:
+      find: ' Найти'
+      main_page: 'На главную'
+      head: 'Поиск отчётов'
+      data_begin: 'Введите начальную дату'
+      data_end: 'Введите конечную дату'
+
   generals:
     index:
       header: "Создание отчёта"
@@ -12,6 +20,8 @@ ru:
   tests:
     new:
       header: "Создание нового отчёта"
+      main_page: 'На главную'
+      
 
   helpers:
     submit:
