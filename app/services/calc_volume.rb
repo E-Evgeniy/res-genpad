@@ -1,7 +1,7 @@
 class CalcVolume
   def self.result(test)
     data_result = {}
-    test_devices = TestsDevice.existence(test.marker)
+    test_devices = TestsDevice.where(test_id: test.id)
     return if test_devices.nil?
     data_result = find_rec_start_fields(data_result,test_devices[0])
     data_result['devices'] = {}
@@ -74,6 +74,8 @@ class CalcVolume
 
 
   def self.find_rec_start_fields(data_result, test_device)
+    puts('data_result',data_result)
+    puts('test_device',test_device)
     a = 'data_result'
     
     for j in (1..4)

@@ -2,7 +2,7 @@ class CreateTestsDevices < ActiveRecord::Migration[6.1]
   def change
     create_table :tests_devices do |t|
       t.integer :device_id
-      t.string :marker, unique: true
+      t.references :test, foreign_key: true
       t.timestamp :date_test
       t.string :sample_barcode
       t.integer :threshold

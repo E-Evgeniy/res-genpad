@@ -100,7 +100,7 @@ class Command
     when 0
       'threshold'
     when 1
-      'marker'
+      'test_id'
     when 2
       'date_test'
     when 3

@@ -33,8 +33,9 @@ class TestsController < ApplicationController
 
     @test = Test.create(params)
     @test.user_id = current_user.id
-    ReadFile.new_report(@test)
+    
    if @test.save
+    ReadFile.new_report(@test)
      redirect_to @test, notice: 'Your report successfully created.'
    else
      render :new
@@ -60,7 +61,7 @@ class TestsController < ApplicationController
 
   def destroy
     @test.destroy
-    redirect_to tests_path
+    redirect_to general_path
   end
 
   private

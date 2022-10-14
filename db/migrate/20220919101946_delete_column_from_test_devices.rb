@@ -10,7 +10,6 @@ class DeleteColumnFromTestDevices < ActiveRecord::Migration[6.1]
     remove_column :tests_devices, :volume_lua
     remove_column :tests_devices, :volume_ipc
     remove_column :tests_devices, :volume_monkeypox
-    remove_column :tests_devices, :marker
   end
 end
 

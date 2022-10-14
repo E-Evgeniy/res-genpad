@@ -2,30 +2,29 @@ class ReadFile
   def self.new_report(test)
     folder = Address.last.address
     all_files = Dir.entries(folder)
-    marker = test.marker
-    find_results(all_files, marker, folder)
+    find_results(all_files, test, folder)
   end
 
-  def self.find_results(all_files, marker, folder)
+  def self.find_results(all_files, test, folder)
     require 'csv'
     result_report = {}
     all_files.each do |file|
-      if file.include? marker
-        result_report = read_test_file(file, result_report, marker, folder)
+      if file.include? test.marker
+        result_report = read_test_file(file, result_report, test.id, folder)
       end
     end
     result_report
   end
 
-  def self.read_test_file(file, result_report, marker, folder)
+  def self.read_test_file(file, result_report, test_id, folder)
     file_with_data = File.open(folder + file, "r:ISO-8859-1")
-    result_report = export_data(file_with_data, marker, result_report)
+    result_report = export_data(file_with_data, test_id, result_report)
   end
 
-  def self.export_data(file_with_data, marker, result_report)
+  def self.export_data(file_with_data, test_id, result_report)
     hash_test_device = {}
     hash_test_device['vol'] = {}
-    hash_test_device['marker'] = marker
+    hash_test_device['test_id'] = test_id
     file_with_data.each_with_index do |row, index|
       row = change_row(row)    
       hash_test_device = rec_hash_test_device(row, hash_test_device, index)
@@ -43,7 +42,6 @@ class ReadFile
   end
 
   def self.create_result_test(index, rec, hash)
-    puts('eeee',rec)
     jv = 7
     rt = ResultTest.new
     for j in (1..4)
@@ -56,14 +54,10 @@ class ReadFile
         end
       else
         atr = Command.save_test_device(j)
-        puts("rt." + atr + " = hash['" + atr + "']")
-        puts(eval("rec['" + atr + "']"))
         eval("rt." + atr + " = hash['" + atr + "']")  
       end
     end
     rt.unit_of_time = index
-    puts('================================')
-    puts(rt)
     rt.save
   end
 

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
 
   create_table "result_tests", force: :cascade do |t|
     t.integer "device_id"
-    t.string "marker"
+    t.bigint "test_id"
     t.datetime "date_test"
     t.string "name_channel_1"
     t.integer "volume_channel_1"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.integer "volume_channel_3"
     t.integer "volume_channel_4"
     t.integer "unit_of_time"
+    t.index ["test_id"], name: "index_result_tests_on_test_id"
   end
 
   create_table "tests", force: :cascade do |t|
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
 
   create_table "tests_devices", force: :cascade do |t|
     t.integer "device_id"
+    t.bigint "test_id"
     t.datetime "date_test"
     t.string "sample_barcode"
     t.integer "threshold"
@@ -68,7 +70,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "marker"
     t.string "name_channel_1"
     t.string "name_channel_2"
     t.string "name_channel_3"
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.string "time_channel_2"
     t.string "time_channel_3"
     t.string "time_channel_4"
+    t.index ["test_id"], name: "index_tests_devices_on_test_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,5 +95,7 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "result_tests", "tests"
   add_foreign_key "tests", "users"
+  add_foreign_key "tests_devices", "tests"
 end
