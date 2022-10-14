@@ -14,6 +14,7 @@
       <th class = 'th_result'>Дата теста</th>
       <th class = 'th_result'>Маркер теста</th>
       <th class = 'th_result'>Тест провёл</th>
+      <th class = 'th_result'>Действия</th>
     </tr>
     <% i = 1 %>
     <% @tests.each do |test| %>
@@ -22,6 +23,10 @@
         <td class = 'th_result'><%= link_to test.testing_date.strftime("%d-%m-%Y"), test_path(test) %></td>
         <td class = 'th_result'><%= test.marker %></td>
         <td class = 'th_result'><%= test.user.last_name %> <%= test.user.first_name %></td>
+        <td class = 'th_result'> <%= link_to 'Delete',
+                test_path(test),
+                method: :delete,
+                data: { confirm: 'Are you sure?'} %></td>
         <% i += 1 %>
       </tr>
     <% end %>

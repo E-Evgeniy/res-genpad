@@ -1,5 +1,5 @@
 <div class = 'show_test'>
-<p class = "href_general"><%= link_to 'To the main page', general_path %></p>
+<%= button_to t('.main_page'), general_path, method: :get, class:"page_button", params: { lang: I18n.locale } %>
 
 <p class = "h_result"><%= @test.testing_date %>  <%= @test.header %> от <%= @test.production_date %> </p>
 <p class = "b_desc">Конфигурация <%= @test.configuration_number %></p>
