@@ -21,13 +21,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "codes", force: :cascade do |t|
-    t.string "code"
-    t.integer "threshold"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "result_tests", force: :cascade do |t|
     t.integer "device_id"
     t.string "marker"
@@ -53,7 +46,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.string "reagent"
     t.date "production_date"
     t.date "testing_date"
-    t.bigint "code_id"
     t.string "conclusion"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -61,7 +53,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.string "header"
     t.bigint "user_id", null: false
     t.string "fluid"
-    t.index ["code_id"], name: "index_tests_on_code_id"
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
@@ -102,6 +93,5 @@ ActiveRecord::Schema.define(version: 2022_10_11_195955) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "tests", "codes"
   add_foreign_key "tests", "users"
 end

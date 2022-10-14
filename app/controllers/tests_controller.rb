@@ -35,7 +35,6 @@ class TestsController < ApplicationController
     @test.user_id = current_user.id
     ReadFile.new_report(@test)
    if @test.save
-     
      redirect_to @test, notice: 'Your report successfully created.'
    else
      render :new
@@ -72,7 +71,7 @@ class TestsController < ApplicationController
 
   def test_params
     params.require(:test).permit(:marker, :configuration_number, :configuration_text,
-                                 :cartridge_type, :reagent, :production_date, :testing_date, :code_id,
+                                 :cartridge_type, :reagent, :production_date, :testing_date,
                                  :conclusion, :description, :user_id, :header, :fluid)
   end
 end

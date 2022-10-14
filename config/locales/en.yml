@@ -7,7 +7,7 @@ en:
       main_page: 'To the main page'
       head: 'Search reports'
       data_begin: 'Enter start date'
-      data_end: 'Enter start date'
+      data_end: 'Enter end date'
 
   generals:
     index:
@@ -18,6 +18,9 @@ en:
       address: "Address of the folder of files with hardware test data"
 
   tests:
+    show:
+      main_page: 'To the main page'
+      
     new:
       header: "Creating a new report"
       main_page: 'To the main page'

@@ -1,7 +1,7 @@
 class CalcGraph
   def self.graph(test)  # переделать запрос, добавить связи между таблицами
     com_data = ResultTest.find_by_sql(["SELECT * from result_tests where marker = ? order by device_id, created_at", test.marker])
-    data_passage(com_data, test.code.threshold)
+    data_passage(com_data, TestsDevice.find_by(marker: test.marker).threshold)
   end
 
   def self.hash_formation_with_graphs(result_hash)

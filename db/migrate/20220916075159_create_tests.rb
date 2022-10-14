@@ -8,7 +8,6 @@ class CreateTests < ActiveRecord::Migration[6.1]
       t.string :reagent
       t.date :production_date
       t.date :testing_date
-      t.references :code, foreign_key: true
       t.string :conclusion
       t.string :description
 
