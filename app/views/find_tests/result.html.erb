@@ -1,0 +1,44 @@
+<h1 class = 'general_header'><%= t('.header') %> </h1>
+
+<div class = 'button_page'>
+  <%= button_to t('.main_page'), general_path, method: :get,
+      class:"page_button", params: { lang: I18n.locale }
+   %>
+   <br>
+  <%= button_to t('.find'), find_test_path, method: :get,
+      class:"page_button", params: { lang: I18n.locale }
+  %>
+</div>
+
+<% if @tests.nil? %>
+  <h2 class="no_result"><%= t('.no_find') %></h2>
+<% else %>
+  <table class="result_table">
+    <tr>
+      <th class = 'th_result'>№</th>
+      <th class = 'th_result'><%=t('.date')%></th>
+      <th class = 'th_result'><%=t('.marker')%></th>
+      <th class = 'th_result'><%=t('.user')%></th>
+      <th  colspain="2" class = 'th_result1'><%=t('.action')%></th>
+    </tr>
+    <% i = 1 %>
+    <% @tests.each do |test| %>
+      <tr>
+        <td class = 'th_result'><%= i %></td>
+        <td class = 'th_result'><%= link_to test.testing_date.strftime("%d-%m-%Y"), test_path(test) %></td>
+        <td class = 'th_result'><%= test.marker %></td>
+        <td class = 'th_result'><%= test.user.last_name %> <%= test.user.first_name %></td>
+        <td class = 'th_result'><%= link_to t('.edit'),
+                edit_test_path(test), data: { test_id: test.id}
+                 %></td>
+        <td class = 'th_result'> <%= link_to t('.delete'),
+                test_path(test),
+                method: :delete,
+                data: { confirm: 'Are you sure?'} %>
+        </td>
+        
+        <% i += 1 %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -1,0 +1,14 @@
+.flash {
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50%;
+  }
+  
+  .flash.notice {
+    border-color: green;
+  }
+  
+  .flash.alert {
+    border-color: #ef2727;
+  }

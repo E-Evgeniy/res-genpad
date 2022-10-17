@@ -1,0 +1,13 @@
+<div class = 'parent_form'>
+  <%= form_with model: @address, local: true do |form| %>
+    <%= render 'shared/errors', resource: @address %>
+    <p>
+      <%= form.label :address, t('.address'), class: "text_form_ad" %><br>
+      <%= form.text_field :address, id: :address_assress, class: "field_form_ad" %>
+    </p>
+    <br>
+    <div class='block_address_button'>
+     <%= button_to t('.create'), addresses_path, method: :post, class:"address_button", params: { lang: I18n.locale } %>
+    </div>
+  <% end %>
+</div>

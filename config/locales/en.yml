@@ -1,33 +1,118 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  hello:  'Hello world '
+
+  addresses:
+    index:
+      address: 'Address of the folder with test results'
+      main_page: 'To the main page'
+      edit: 'Edit the path'
+      delete: 'Delete the path'
+      create: 'Specify the address'
+      no_address: 'ADDRESS NOT SPECIFIED'
+
+    new:
+      create: 'Specify the address'
+      main_page: 'Specify the address'
+      back: 'Back'
+
+    form:
+      address: 'Address of the results folder'
+      create: 'Specify'
+
+    edit:
+      edit: 'Editing an address'
+      main_page: 'Specify the address'
+      back: 'Back'
+
+  shared:
+    nav:
+      logout: 'Logout'
+      welcome: 'Welcome'
+      login: 'Log in'
+      sign_up: 'Sign up'
+      lang: 'Русская версия'
+
+  find_tests:
+    result:
+      header: 'Search results'
+      main_page: 'To the main page'
+      find: 'Search for more'
+      no_find: 'Nothing was found...'
+      date: 'Date of the test'
+      marker: 'Test marker'
+      user: 'The test was conducted'
+      action: 'Action'
+      edit: 'Edit'
+      delete: 'Delete'
+
+    find:
+      find: 'Start'
+      main_page: 'To the main page'
+      head: 'Search reports'
+      data_begin: 'Enter start date'
+      data_end:   'Enter end date'
+
+  generals:
+    index:
+      header:  'Reports '
+      new_test:  'Create a new report '
+      find_test:  'Search for reports '
+      codes:   'Table with codes for reports '
+      address:  'Address of the folder of files with hardware test data '
+
+  tests:
+    show:
+      main_page: 'To the main page'
+      
+    new:
+      header:  'Creating a new report '
+      main_page: 'To the main page'
+          
+    form:
+      create: 'Create a report'
+    
+    edit:
+      edit: 'Edit the report'  
+      main_page: 'To the main page'
+    
+    form_edit:
+      edit: 'Edit the report'
+      marker: 'Marker:'
+
+    show:
+      main_page: 'To the main page' 
+      configuration_num: 'Configuration number:'
+      cartridge_type: 'Cartridge type:'
+      configuration: 'Configuration:'
+      reagents: 'Reagents:'
+      solution: 'Solution:'
+      description:  'Notes to the test:'
+      user: 'The test was conducted:'
+      no_data: 'There is no data to display, you need to double-check the results.'
+      devices_id: 'Device ID'
+      max: 'Maximum value'
+      min: 'Minimum value'
+      average: 'Average value'
+      com_graph: 'General display of graphs'
+
+  
+
+  helpers:
+    submit:
+      test:
+        create:  'Create report '
+
+    label:
+      test:
+        marker:  'Enter the test marker '
+        code_id:  'Enter the analysis code '
+        fluid:    'Enter the solution parameters '
+        configuration_number:  'Enter the configuration number '
+        header:  'Enter the test title '
+        production_date:  'Enter the chip production date '
+        testing_date:  'Enter the date of the test '
+        cartridge_type:  'Enter the cartridge type '
+        configuration_text:  'Enter the configuration '
+        reagent:  'Enter reagents '
+        conclusion:  'Enter the test conclusion '
+        description:  'Notes to the test'

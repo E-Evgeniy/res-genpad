@@ -1,0 +1,8 @@
+<div class = 'new_test'>
+  <h2 class = 'general_header'><%= t('.edit')%></h2>
+  <%= button_to t('.main_page'), general_path, method: :get, class:"page_button", params: { lang: I18n.locale } %>
+  
+  <div class = 'form_test'>
+    <%= render 'form_edit' %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.main {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.find_button {
+    border: none;
+    border-radius: 7px;
+    padding: 15px 30px;
+    background: #242425e1;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    margin-left: 70px;
+    margin-top: 10px;
+ }
+
+ .text_field_label {
+    width: 160px;
+    padding: 6px 20px;
+    margin: 3px 0;
+    box-sizing: border-box;
+    border: 2px solid #555;
+ }
+
+.name_field_find {
+    font-size: 14pt;
+}

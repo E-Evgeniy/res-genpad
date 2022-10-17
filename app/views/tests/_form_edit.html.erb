@@ -1,0 +1,62 @@
+<div class = 'form_test'>
+<%= form_with model: @test, local: true do |form| %>
+  <%= render 'shared/errors', resource: @code %>
+  <p>
+    <%= t('.marker') %>
+    <%=  @test.marker%>
+  </p>
+
+  <p>
+    <%= form.label :configuration_number %><br>
+    <%= form.text_field :configuration_number, id: :test_configuration_number, class: 'text_field' %>
+  </p>
+
+  <p>
+    <%= form.label :fluid %><br>
+    <%= form.text_field :fluid, id: :test_fluid, class: 'text_field' %>
+  </p>
+
+  <p>
+    <%= form.label :header %><br>
+    <%= form.text_area :header, id: :test_header, class: 'text_field_head' %>
+  </p>
+
+  <p>
+    <%= form.label :production_date %><br>
+    <%= form.date_field :production_date, id: :test_production_date, class: 'text_field' %>
+  </p>
+
+   <p>
+    <%= form.label :testing_date %><br>
+    <%= form.date_field :testing_date, id: :test_testing_date, class: 'text_field' %>
+  </p>
+  <p>
+
+    <%= form.label :cartridge_type %><br>
+    <%= form.text_area :cartridge_type, id: :test_cartridge_type, class: 'text_field_cat' %>
+  </p>
+
+  <p>
+    <%= form.label :configuration_text %><br>
+    <%= form.text_area :configuration_text, id: :test_configuration_text, class: 'text_field_conf' %>
+  </p>
+
+  <p>
+    <%= form.label :reagent %><br>
+    <%= form.text_area :reagent, id: :test_reagent, class: 'text_field_reagent' %>
+  </p>
+
+  <p>
+    <%= form.label :conclusion %><br>
+    <%= form.text_area :conclusion, id: :test_conclusion, class: 'text_field_head' %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description, id: :test_description, class: 'text_field_head' %>
+  </p>
+
+  <%= button_to t('.edit'), tests_path, method: :get, class:"test_button", params: { lang: I18n.locale } %>
+
+  <% end %>
+</div>

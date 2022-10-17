@@ -1,0 +1,17 @@
+<div class = 'general_header'><%= t('.head') %> </div>
+<div class = 'button_page'>
+  <%= button_to t('.main_page'), general_path, method: :get,
+      class:"page_button", params: { lang: I18n.locale } %>
+</div>
+
+<div class = 'main'>
+  <%= form_with url: "result", method: :get do |form| %>
+    <%= form.label :data_begin, t('.data_begin'), class: "name_field_find"%>
+    <%= form.date_field :data_begin, class: "text_field_label"%>
+    <p>
+    <%= form.label :data_end, t('.data_end'), class: "name_field_find"%>
+    <%= form.date_field :data_end, class: "text_field_label"%>
+    <p>
+    <%= button_to t('.find'), result_path, method: :get, class:"find_button", params: { lang: I18n.locale } %>
+  <% end %>
+</div>
