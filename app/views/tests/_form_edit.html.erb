@@ -2,8 +2,8 @@
 <%= form_with model: @test, local: true do |form| %>
   <%= render 'shared/errors', resource: @code %>
   <p>
-    <%= form.label :marker %><br>
-    <%= form.text_field :marker, id: :test_marker, class: 'text_field'%>
+    <%= t('.marker') %>
+    <%=  @test.marker%>
   </p>
 
   <p>
@@ -56,7 +56,7 @@
     <%= form.text_area :description, id: :test_description, class: 'text_field_head' %>
   </p>
 
-  <%= button_to t('.create'), tests_path, method: :post, class:"test_button", params: { lang: I18n.locale } %>
+  <%= button_to t('.edit'), tests_path, method: :get, class:"test_button", params: { lang: I18n.locale } %>
 
   <% end %>
 </div>

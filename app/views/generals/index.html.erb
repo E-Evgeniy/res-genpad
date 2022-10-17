@@ -1,6 +1,6 @@
 <div class = 'general_index'>
 
-  <h1><%= t('.header') %> </h1>
+  <h1 class = 'general_header'><%= t('.header') %> </h1>
 
   <div class = 'block_button'>
     <%= button_to t('.new_test'), new_test_path, method: :get, class:"gen_button", params: { lang: I18n.locale } %>
@@ -9,6 +9,6 @@
     <br>
     <%= button_to t('.address'), addresses_path, method: :get, class:"gen_button", params: { lang: I18n.locale } %>
   </div>
-</div>
 
+</div>
 

@@ -7,14 +7,20 @@
     text-transform: uppercase;
     font-weight: bold;
     color: white;
+    width: 800px;
  }
 
  .general_index {
-    margin-top: -40px;
-    margin-left: 30px;
+   margin-top: -30px;
+   margin: auto;
  }
 
  .block_button {
     margin-top: 30px;
-    
+ }
+
+ .general_header {
+   font-size: 40px;
+   margin: auto;
+   text-align: center;
  }

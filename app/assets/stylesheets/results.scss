@@ -1,3 +1,27 @@
 // Place all the styles related to the Results controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.result_table { text-align: center;
+    padding: 10px 0;
+    font-size: 18px; 
+    border: 1px solid grey;
+    border-collapse: collapse;
+    margin-top: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    overflow-wrap: break-word;
+}
+
+.th_result {
+        border: 1px solid grey;
+        border-collapse: collapse;
+     }
+
+.th_result1 {
+    justify-content: center;
+     }
+
+.no_result {
+    text-align: center;
+}

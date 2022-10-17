@@ -1,5 +1,13 @@
-<h1>Edit adsress</h1>
+<h1 class = 'general_header'><%= t('.edit') %> </h1>
+<br>
+<div class = 'button_address'>
+  <%= button_to t('.main_page'), general_path, method: :get,
+      class:"page_button", params: { lang: I18n.locale }
+   %>
+  <%= button_to t('.back'), addresses_path, method: :get,
+      class:"page_button", params: { lang: I18n.locale }
+   %>
+</div>
 
-<%= render 'form' %>
-<p>
-<%= link_to 'Back', addresses_path %>
+  <%= render 'form' %>
+</div>

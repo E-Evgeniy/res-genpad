@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .h_result { text-align: center;
             font-weight: bold;
+            font-size: 17pt;
 }
 
 .b_desc { text-align: left;
@@ -13,21 +14,6 @@
 .u_desc { text-align: left;
           margin-left: 10px;
 }
-
-.result_table { text-align: center;
-    padding: 10px 0;
-    font-size: 14px; 
-    border: 1px solid grey;
-    border-collapse: collapse;
-    margin-top: 30px;
-    margin-left: 10px;
-    overflow-wrap: break-word;
-}
-
-.th_result {
-        border: 1px solid grey;
-        border-collapse: collapse;
-     }
 
 .graph {
     width: 600px;
@@ -40,6 +26,7 @@
     text-align: center;
     font-weight: bold;
     padding-top: 50px;
+    font-size: 15pt;
 }
 
 .href_general{
@@ -66,4 +53,56 @@
     text-transform: uppercase;
     font-weight: bold;
     color: white;
+    width: 180px;
+    margin-left: 20px;
+    margin-top: 5px;
  }
+
+ .form_test {
+    display: flex;
+    justify-content: center;
+    font-size: 13pt; 
+ }
+
+ .test_button {
+    border: none;
+    border-radius: 7px;
+    padding: 15px 30px;
+    background: #242425e1;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    margin-top: 15px;
+    width: 250px;
+ }
+
+ .text_field_reagent {
+    width: 240px;
+    height: 110px;
+    margin-top: 5px;
+ }
+
+ .text_field_conf {
+    width: 245px;
+    height: 140px;
+    margin-top: 5px;
+ }
+
+ .text_field_cat {
+    width: 245px;
+    height: 140px;
+    margin-top: 5px;
+ }
+
+ .text_field_head {
+    width: 245px;
+    height: 40px;
+    margin-top: 5px;
+ }
+
+ .text_field {
+    width: 245px;
+    margin-top: 5px;
+ }
+

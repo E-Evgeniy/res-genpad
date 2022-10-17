@@ -2,19 +2,19 @@
 <%= button_to t('.main_page'), general_path, method: :get, class:"page_button", params: { lang: I18n.locale } %>
 
 <p class = "h_result"><%= @test.testing_date %>  <%= @test.header %> от <%= @test.production_date %> </p>
-<p class = "b_desc">Конфигурация <%= @test.configuration_number %></p>
-<p class = "u_desc"><b>Cartridge type:</b> <%= @test.cartridge_type %></p>
-<p class = "u_desc"><b>Configuration:</b> <%= @test.configuration_text %></p>
-<p class = "u_desc"><b>Reagents:</b> <%= @test.reagent %></p>
-<p class = "u_desc"><b>Solution:</b> <%= @test.fluid %></p>
+<p class = "b_desc"><%= t('.configuration_num') %> <%= @test.configuration_number %></p>
+<p class = "u_desc"><b><%= t('.cartridge_type') %></b> <%= @test.cartridge_type %></p>
+<p class = "u_desc"><b><%= t('.configuration') %></b> <%= @test.configuration_text %></p>
+<p class = "u_desc"><b><%= t('.reagents') %></b> <%= @test.reagent %></p>
+<p class = "u_desc"><b><%= t('.solution') %></b> <%= @test.fluid %></p>
 <% if !@test.description.empty? %>
-<p class = "u_desc"><b>Замечание:</b> <%= @test.description %></p>
+<p class = "u_desc"><b><%=t('.description')%></b> <%= @test.description %></p>
 <% end %>
-<p class = "u_desc"><b>The test has been completed:</b> <%= @test.user.last_name %> <%= @test.user.first_name %></p>
+<p class = "u_desc"><b><%=t('.user')%></b> <%= @test.user.last_name %> <%= @test.user.first_name %></p>
 
 
 <% if @result_test.nil? %>
-  Нет данных для отображения, необходимо перепроверить результаты.
+  <%= t('.no_data') %>  
 <% else %>
   <table class="result_table">
     <col width="50">
@@ -25,7 +25,7 @@
     <col width="80">
     <tr>
     <th class = 'th_result'>№</th>
-    <th class = 'th_result'>Devices_id</th>
+    <th class = 'th_result'><%=t('.devices_id')%></th>
     <th class = 'th_result'><%= @result_test['name_channel_1'].upcase %></th>
     <th class = 'th_result'><%= @result_test['name_channel_2'].upcase %></th>
     <th class = 'th_result'><%= @result_test['name_channel_3'].upcase %></th>
@@ -66,18 +66,18 @@
     <th colspan="3" class = 'th_result' ><%= @result_test['name_channel_4'].upcase %></th>
   </tr>
   <tr>
-    <th class = 'th_result'>Максимальное значение</th>
-    <th class = 'th_result'>Минимальное значение</th>
-    <th class = 'th_result'>Среднее значение</th>
-    <th class = 'th_result'>Максимальное значение</th>
-    <th class = 'th_result'>Минимальное значение</th>
-    <th class = 'th_result'>Среднее значение</th>
-    <th class = 'th_result'>Максимальное значение</th>
-    <th class = 'th_result'>Минимальное значение</th>
-    <th class = 'th_result'>Среднее значение</th>
-    <th class = 'th_result'>Максимальное значение</th>
-    <th class = 'th_result'>Минимальное значение</th>
-    <th class = 'th_result'>Среднее значение</th>
+    <th class = 'th_result'><%=t('.max')%></th>
+    <th class = 'th_result'><%=t('.min')%></th>
+    <th class = 'th_result'><%=t('.average')%></th>
+    <th class = 'th_result'><%=t('.max')%></th>
+    <th class = 'th_result'><%=t('.min')%></th>
+    <th class = 'th_result'><%=t('.average')%></th>
+    <th class = 'th_result'><%=t('.max')%></th>
+    <th class = 'th_result'><%=t('.min')%></th>
+    <th class = 'th_result'><%=t('.average')%></th>
+    <th class = 'th_result'><%=t('.max')%></th>
+    <th class = 'th_result'><%=t('.min')%></th>
+    <th class = 'th_result'><%=t('.average')%></th>
   </tr>
   <tr>
     <td class = 'th_result'><%= @result_test['max_channel_1'] %></td>
@@ -98,7 +98,7 @@
 
 <% if !@device_graphs.nil? %>
 <% @device_graphs.each do |key, device| %>
-  <p class = 'name_graph'> Device ID <%= key %> </p>
+  <p class = 'name_graph'> <%=t('.devices_id')%> <%= key %> </p>
   <div class = 'graph'>
   <%= eval(device)%>
 </div>
@@ -106,7 +106,7 @@
 <% end %>
 
 <% if !@common_graph.nil? %>
-<p class = 'name_graph'> Общее отображение графиков</p>
+<p class = 'name_graph'> <%=t('.com_graph')%></p>
 <% for j in (1..4) %>
   <% if !@common_graph[j].empty? %>
     <p class = 'name_graph'> <%= @common_graph[j+4] %> </p>
