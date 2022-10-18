@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   get 'find_test', to: 'find_tests#find', as: :find_test
   get 'result', to: 'find_tests#result', as: :result
+
+  mount ActionCable.server => '/cable'
 end

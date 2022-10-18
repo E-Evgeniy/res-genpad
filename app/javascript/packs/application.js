@@ -6,6 +6,7 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
+import '@rails/actioncable'
 import "channels"
 import "chartkick"
 import "chartkick/chart.js"
@@ -13,3 +14,4 @@ import "chartkick/chart.js"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require("jquery")
