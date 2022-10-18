@@ -1,6 +1,33 @@
 ru:
   hello:  'Привет мир '
 
+  devise:
+    sessions:
+      new:
+        log_in: 'Войти'
+        new_session: 'Войти'
+        email: 'Почта'
+        password: 'Пароль'
+        remember_me: 'Запомнить меня'
+
+    registrations:
+      new:
+        registration: 'Регистрация'
+        email: 'Почта'
+        password: 'Пароль'
+        password_min: 'минимум символов'
+        password_confirmation: 'Подтверждение пароля'
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        new_registration: 'Зарегистрироваться'
+    
+    shared:
+      links:
+        sign_up: 'Зарегистрироваться'
+        forgot: 'Забыли свой пароль?'
+        log_in: 'Войти'
+        
+
   addresses:
     index:
       address: 'Адрес папки с результатами тестов'
@@ -115,3 +142,5 @@ ru:
         reagent:  'Введите реагенты '
         conclusion:  'Введите заключение теста'
         description:  'Замечания к тесту'
+
+          

@@ -1,6 +1,32 @@
 en:
   hello:  'Hello world '
 
+  devise:
+    sessions:
+      new:
+        log_in: 'Log in'
+        new_session: 'Log in'
+        email: 'Email'
+        password: 'Password'
+        remember_me: 'Remember me'
+
+    registrations:
+      new:
+        registration: 'Registration'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        first_name: 'First name'
+        last_name: 'Last name'
+        password_min: 'characters minimum'
+        new_registration: 'Registration'
+    
+    shared:
+      links:
+        sign_up: 'Sign up'
+        forgot: 'Forgot your password?'
+        log_in: 'Log in'
+
   addresses:
     index:
       address: 'Address of the folder with test results'
@@ -116,3 +142,4 @@ en:
         reagent:  'Enter reagents '
         conclusion:  'Enter the test conclusion '
         description:  'Notes to the test'
+

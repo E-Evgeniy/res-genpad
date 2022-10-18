@@ -1,13 +1,14 @@
+<% lang = 'en' %>
+<% lang = 'ru' if I18n.locale == :en %> 
 <p class="nav_user">
         <% if user_signed_in? %>
         <%= t('.welcome') %> <b><%= current_user.last_name %> <%= current_user.first_name %></b> |
         <%= link_to t('.logout'), destroy_user_session_path, method: :delete %> |
-        <% lang = 'en' %>
-        <% lang = 'ru' if I18n.locale == :en %> 
-        <br> 
-        <%= link_to t('.lang'), request.path.to_s + '?lang=' + lang %>
+        
         <% else %>
           <%= link_to t('.login'), new_user_session_path %> |
-          <%= link_to t('.sign_up'), new_user_registration_path %>
+          <%= link_to t('.sign_up'), new_user_registration_path %> |
         <% end %>
+        <br> 
+        <%= link_to t('.lang'), request.path.to_s + '?lang=' + lang %>
 </p>
