@@ -1,4 +1,6 @@
 class TestsController < ApplicationController
+  include Commented
+  
   before_action :authenticate_user!, except: %i[index show]
   before_action :load_test, only: %i[show edit update destroy]
 
@@ -8,7 +10,8 @@ class TestsController < ApplicationController
 
   def show
     @result_test = CalcVolume.result(@test)
-    puts(@result_test)
+    @test.comments.new
+
     if @result_test['name_channel_1'] != 'ERROR' 
       result_graphs = CalcGraph.graph(@test)
       @device_graphs = CalcGraph.hash_formation_with_graphs(result_graphs)
@@ -73,6 +76,6 @@ class TestsController < ApplicationController
   def test_params
     params.require(:test).permit(:marker, :configuration_number, :configuration_text,
                                  :cartridge_type, :reagent, :production_date, :testing_date,
-                                 :conclusion, :description, :user_id, :header, :fluid)
+                                 :conclusion, :description, :user_id, :header, :fluid, comments_attributes: [:body, :user_id])
   end
 end

@@ -119,3 +119,8 @@
 
 <% end %>
 </div>
+
+<% @test.comments.each do |comment| %>
+  <%= comment.body %>
+<% end %>
+
