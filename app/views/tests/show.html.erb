@@ -119,3 +119,10 @@
 
 <% end %>
 </div>
+
+<div class = 'comments'>
+  <h2><%=t('.comments')%></h2>
+  <%= render 'comments/form', test: @test %>
+  <%= render @test.comments%>
+    
+</div>

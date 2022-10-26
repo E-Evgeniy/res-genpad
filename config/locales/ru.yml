@@ -86,11 +86,13 @@ ru:
       find_test:  'Поиск отчётов '
       codes:   'Таблица с кодами для отчётов '
       address:  'Адрес папки файлов с данными тестов оборудования '
+  
+  comments:
+    form:
+      add: 'Добавить'
+      body: ''
 
   tests:
-    show:
-      main_page: 'На главную'
-
     new:
       header:  'Создание нового отчёта '
       main_page: 'На главную'
@@ -107,6 +109,7 @@ ru:
       marker: 'Маркер:'
     
     show:
+      comments: 'Комментарии'
       main_page: 'На главную' 
       configuration_num: 'Номер конфигурации:'
       cartridge_type: 'Тип картриджа:'
@@ -142,5 +145,8 @@ ru:
         reagent:  'Введите реагенты '
         conclusion:  'Введите заключение теста'
         description:  'Замечания к тесту'
+
+      comment:
+        body: 'Ваш комментарий'
 
           
