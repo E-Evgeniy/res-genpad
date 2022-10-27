@@ -12,8 +12,6 @@ class CommentsController < ApplicationController
 
     if @comment.save
       redirect_to @comment.test
-    else
-      render :new
     end 
   end
 

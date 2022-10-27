@@ -122,6 +122,11 @@
 
 <div class = 'comments'>
   <h2><%=t('.comments')%></h2>
+  
+  <div class = 'comment-errors'>
+    <%= render 'shared/errors', resource: @comment %>
+  </div>
+
   <%= render 'comments/form', test: @test %>
   <div class = 'comments_tab'>
     <%= render @test.comments%>
