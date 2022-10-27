@@ -7,12 +7,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @test.comments.new(comment_params)
-    @comment.user_id = current_user.id
-
-    if @comment.save
-      redirect_to @comment.test
-    end 
+    @comment = @test.comments.create(comment_params)
+    #@comment.user_id = current_user.id
   end
 
   def destroy

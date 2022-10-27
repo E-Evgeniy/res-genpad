@@ -1,1 +1,2 @@
 $('.comment-errors').html('<%= render 'shared/errors', resource: @comment %>');
+$('.comments').append('<%= j render @comment %>')
