@@ -5,7 +5,7 @@
   <col width="100">
   <tr>
     <td class = 'th_result'><%= comment.created_at.to_s.delete 'UTC' %></td>
-    
+    <td class = 'th_result'><%= comment.user.first_name %> <%= comment.user.last_name %></td>
     <td class = 'th_result'><%= comment.body %></td>
   </tr>
 </table>

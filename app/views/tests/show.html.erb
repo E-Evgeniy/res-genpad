@@ -1,3 +1,4 @@
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js">
 <div class = 'show_test'>
 <%= button_to t('.main_page'), general_path, method: :get, class:"page_button", params: { lang: I18n.locale } %>
 
@@ -120,6 +121,9 @@
 <% end %>
 </div>
 
+<div class = 'comment-errors'>
+    <%= render 'shared/errors', resource: @comment %>
+  </div>
 
   <h2><%=t('.comments')%></h2>
   
