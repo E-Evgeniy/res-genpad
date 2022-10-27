@@ -1,6 +1,35 @@
 .comments {
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
     margin-top: 30px;
     display: flex;
+    flex-direction: column;
 }
+
+.comment_field {
+    width: 300px;
+    height: 100px;
+    margin-top: 5px;
+}
+
+.comment_button {
+    border: none;
+    border-radius: 7px;
+    padding: 12px 30px;
+    background: #242425e1;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+ }
+
+ .comment_table {
+    width: 600px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ .comments_tab {
+    margin-top: 20px;
+ }
