@@ -4,7 +4,6 @@
     <br>
     <%= form.text_area :body, id: :comment_text, class: 'comment_field' %>
   </p>
-  <%= form.submit "Ask" %>
 
   <%= button_to t('.add'), test_comments_path(@test), method: :post, class:"comment_button", params: { lang: I18n.locale } %>
 <% end %>

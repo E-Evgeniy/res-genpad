@@ -1,18 +1,17 @@
 class CommentsController < ApplicationController
   before_action :find_test, only: %i[ new create ]
   before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index show]
 
   def new
     @comment = @test.comments.new
   end
 
   def create
-    @comment = @test.comments.new(comment_params)
-    @comment.user_id = current_user.id
-
-    if @comment.save
-      redirect_to @comment.test
-    end 
+    puts('current_user', current_user)
+    
+    puts('comment_params',comment_params_for_create(comment_params))
+    @comment = @test.comments.create(comment_params_for_create(comment_params))
   end
 
   def destroy
@@ -30,7 +29,12 @@ class CommentsController < ApplicationController
     @acomment = Comment.find(params[:id])
   end
 
+  def comment_params_for_create(params)
+    params['user_id'] = current_user.id
+    params
+  end
+
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :user_id)
+    params.require(:comment).permit(:body)
   end
 end

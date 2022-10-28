@@ -1,2 +1,5 @@
 $('.comment-errors').html('<%= render 'shared/errors', resource: @comment %>');
+<% if !@comment.errors.present?%>
 $('.comments').append('<%= j render @comment %>')
+$('#comment_text').val('');
+<% end%>
