@@ -1,0 +1,9 @@
+<%= form_with model: [test, @comment], local: false do |form| %>
+  <p>
+    <%= form.label :body %>
+    <br>
+    <%= form.text_area :body, id: :comment_text, class: 'comment_field' %>
+  </p>
+
+  <%= button_to t('.add'), test_comments_path(@test), method: :post, class:"comment_button", params: { lang: I18n.locale } %>
+<% end %>

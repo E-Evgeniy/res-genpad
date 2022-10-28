@@ -1,6 +1,32 @@
 en:
   hello:  'Hello world '
 
+  devise:
+    sessions:
+      new:
+        log_in: 'Log in'
+        new_session: 'Log in'
+        email: 'Email'
+        password: 'Password'
+        remember_me: 'Remember me'
+
+    registrations:
+      new:
+        registration: 'Registration'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        first_name: 'First name'
+        last_name: 'Last name'
+        password_min: 'characters minimum'
+        new_registration: 'Registration'
+    
+    shared:
+      links:
+        sign_up: 'Sign up'
+        forgot: 'Forgot your password?'
+        log_in: 'Log in'
+
   addresses:
     index:
       address: 'Address of the folder with test results'
@@ -60,10 +86,12 @@ en:
       codes:   'Table with codes for reports '
       address:  'Address of the folder of files with hardware test data '
 
-  tests:
-    show:
-      main_page: 'To the main page'
-      
+  comments:
+    form:
+      add: 'Add'
+      body: ''
+
+  tests:      
     new:
       header:  'Creating a new report '
       main_page: 'To the main page'
@@ -80,6 +108,7 @@ en:
       marker: 'Marker:'
 
     show:
+      comments: 'Comments'
       main_page: 'To the main page' 
       configuration_num: 'Configuration number:'
       cartridge_type: 'Cartridge type:'
@@ -116,3 +145,7 @@ en:
         reagent:  'Enter reagents '
         conclusion:  'Enter the test conclusion '
         description:  'Notes to the test'
+
+      comment:
+        body: ''
+

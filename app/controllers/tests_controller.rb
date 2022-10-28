@@ -7,8 +7,8 @@ class TestsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @result_test = CalcVolume.result(@test)
-    puts(@result_test)
     if @result_test['name_channel_1'] != 'ERROR' 
       result_graphs = CalcGraph.graph(@test)
       @device_graphs = CalcGraph.hash_formation_with_graphs(result_graphs)

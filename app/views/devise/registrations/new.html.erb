@@ -1,40 +1,43 @@
-<h2>Registration</h2>
+<h2 class = 'new_log'><%= t('.registration')%></h2>
+
+<div class = 'log_in'>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="field_reg">
+    <%= f.label t('.email') %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'field_reg1' %>
   </div>
   <br>
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autocomplete: "first_name" %>
+  <div class="field_reg">
+    <%= f.label t('.first_name') %><br />
+    <%= f.text_field :first_name, autocomplete: "first_name", class: 'field_reg1' %>
   </div>
   <br>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autocomplete: "last_name" %>
+  <div class="field_reg">
+    <%= f.label t('.last_name') %><br />
+    <%= f.text_field :last_name, autocomplete: "last_name", class: 'field_reg1' %>
   </div>
   <br>
-  <div class="field">
-    <%= f.label :password %>
+  <div class="field_reg">
+    <%= f.label t('.password') %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> <%=t('.password_min')%> )</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'field_reg1' %>
   </div>
   <br>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field_reg">
+    <%= f.label t('.password_confirmation') %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'field_reg1' %>
   </div>
   <br>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <%= button_to t('.new_registration'), new_user_registration_path, method: :get, class:"log_in_button", params: { lang: I18n.locale } %>
 <% end %>
 <br>
+</div>
+<div class = 'links_new'>
 <%= render "devise/shared/links" %>
+</div>

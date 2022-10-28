@@ -1,6 +1,33 @@
 ru:
   hello:  'Привет мир '
 
+  devise:
+    sessions:
+      new:
+        log_in: 'Войти'
+        new_session: 'Войти'
+        email: 'Почта'
+        password: 'Пароль'
+        remember_me: 'Запомнить меня'
+
+    registrations:
+      new:
+        registration: 'Регистрация'
+        email: 'Почта'
+        password: 'Пароль'
+        password_min: 'минимум символов'
+        password_confirmation: 'Подтверждение пароля'
+        first_name: 'Имя'
+        last_name: 'Фамилия'
+        new_registration: 'Зарегистрироваться'
+    
+    shared:
+      links:
+        sign_up: 'Зарегистрироваться'
+        forgot: 'Забыли свой пароль?'
+        log_in: 'Войти'
+        
+
   addresses:
     index:
       address: 'Адрес папки с результатами тестов'
@@ -59,11 +86,13 @@ ru:
       find_test:  'Поиск отчётов '
       codes:   'Таблица с кодами для отчётов '
       address:  'Адрес папки файлов с данными тестов оборудования '
+  
+  comments:
+    form:
+      add: 'Добавить'
+      body: ''
 
   tests:
-    show:
-      main_page: 'На главную'
-
     new:
       header:  'Создание нового отчёта '
       main_page: 'На главную'
@@ -80,6 +109,7 @@ ru:
       marker: 'Маркер:'
     
     show:
+      comments: 'Комментарии'
       main_page: 'На главную' 
       configuration_num: 'Номер конфигурации:'
       cartridge_type: 'Тип картриджа:'
@@ -115,3 +145,8 @@ ru:
         reagent:  'Введите реагенты '
         conclusion:  'Введите заключение теста'
         description:  'Замечания к тесту'
+
+      comment:
+        body: 'Ваш комментарий'
+
+          

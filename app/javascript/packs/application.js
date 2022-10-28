@@ -10,6 +10,8 @@ import "channels"
 import "chartkick"
 import "chartkick/chart.js"
 
+require("jquery")
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
