@@ -1,6 +1,6 @@
 <%= form_with model: [test, @comment], local: false do |form| %>
   <p>
-    <%= form.label :body %>
+    <%= form.label :body %> <b> <%= current_user.first_name %> <%= current_user.last_name %></b>:
     <br>
     <%= form.text_area :body, id: :comment_text, class: 'comment_field' %>
   </p>

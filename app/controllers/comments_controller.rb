@@ -22,12 +22,10 @@ class CommentsController < ApplicationController
   def publish_comment
     return if @comment.errors.any?
 
-
+    data = ApplicationController.render partial: 'comments/comment', locals: { comment: @comment }
  
-    ActionCable.server.broadcast "comment_channel",
-                                      content: @comment
-    
-    
+    ActionCable.server.broadcast 'comment_channel',
+                                      content: data
   end
 
   def find_test
