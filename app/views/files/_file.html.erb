@@ -1,0 +1,11 @@
+<% if resource.files.attached? %> 
+    <h3><%=t('.files')%></h3>
+    <% @test.files.each do |file| %>
+      <li> <%= link_to file.filename.to_s, url_for(file), class: 'name-test-file' %> </li>
+      <% if current_user.id == resource.user_id %> 
+        <%= link_to 'Delete this file ^', file_path(:file => file, :test => resource), class: 'delete-test-file', method: :delete,
+            data: { remote: true } %>
+      <% end %>
+      <div class='name-test-file'></div>
+    <% end %>
+ <% end %>

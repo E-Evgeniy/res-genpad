@@ -4,11 +4,12 @@ class FilesController < ApplicationController
     attr_reader :obj
   
     def destroy
-      file_as = ActiveStorage::Attachment.find(params[:id])
+      file_as = ActiveStorage::Attachment.find(params[:file])
+
+      puts('SSSSSSSSS', params)
       @obj = file_as.record
-      obj.files.find(file_as.id).purge
-  
-      obj.reload
+      @obj.files.find(file_as.id).purge
+      @test = Test.find(params[:test])
     end
   
   end
