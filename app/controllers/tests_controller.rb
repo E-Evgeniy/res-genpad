@@ -52,7 +52,10 @@ class TestsController < ApplicationController
   end
 
   def update
-    if @test.update(test_params)
+
+    @test.files.attach(test_params[:files]) if !test_params[:files].nil?
+
+    if @test.update(test_params_update)
       redirect_to @test
     else
       render :edit
@@ -61,18 +64,24 @@ class TestsController < ApplicationController
 
   def destroy
     @test.destroy
-    redirect_to general_path
+    redirect_to find_test_path
   end
 
   private
 
   def load_test
-    @test = Test.find(params[:id])
+    @test = Test.with_attached_files.find(params[:id])
+  end
+
+  def test_params_update
+    params.require(:test).permit(:marker, :configuration_number, :configuration_text,
+                                 :cartridge_type, :reagent, :production_date, :testing_date,
+                                 :conclusion, :description, :user_id, :header, :fluid)
   end
 
   def test_params
     params.require(:test).permit(:marker, :configuration_number, :configuration_text,
                                  :cartridge_type, :reagent, :production_date, :testing_date,
-                                 :conclusion, :description, :user_id, :header, :fluid)
+                                 :conclusion, :description, :user_id, :header, :fluid, files: [])
   end
 end

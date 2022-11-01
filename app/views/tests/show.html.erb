@@ -1,7 +1,9 @@
 
 <div class = 'show_test'>
 <%= button_to t('.main_page'), general_path, method: :get, class:"page_button", params: { lang: I18n.locale } %>
-
+<%  if current_user.id == @test.user_id %>
+  <%= button_to 't', edit_test_path(@test), method: :get, class:"page_button", params: { lang: I18n.locale } %>
+<% end %>
 <p class = "h_result"><%= @test.testing_date %>  <%= @test.header %> от <%= @test.production_date %> </p>
 <p class = "b_desc"><%= t('.configuration_num') %> <%= @test.configuration_number %></p>
 <p class = "u_desc"><b><%= t('.cartridge_type') %></b> <%= @test.cartridge_type %></p>
@@ -97,6 +99,15 @@
   
 </table>
 
+<% if @test.files.attached? %> 
+  <div class = 'files'>
+    <h3><%=t('.files')%></h3>
+    <% @test.files.each do |file| %>
+      <li> <%= link_to file.filename.to_s, url_for(file) %> </li>
+    <% end %>
+  </div>
+ <% end %> 
+
 <% if !@device_graphs.nil? %>
 <% @device_graphs.each do |key, device| %>
   <p class = 'name_graph'> <%=t('.devices_id')%> <%= key %> </p>
@@ -120,7 +131,9 @@
 
 <% end %>
 </div>
-  
+
+<a href="#" title="Вернуться к началу" class="topbutton">^Наверх</a>
+
 <div class = 'comments'>
   <h2><%=t('.comments')%></h2>
 

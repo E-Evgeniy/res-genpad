@@ -4,5 +4,7 @@ class Test < ApplicationRecord
   has_many :result_tests, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_many_attached :files
+
   scope :existence, -> (marker) { where(marker: marker)}
 end
