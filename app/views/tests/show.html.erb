@@ -123,11 +123,16 @@
   
 <div class = 'comments'>
   <h2><%=t('.comments')%></h2>
-   <div class = 'comment-errors'>
-    <%= render 'shared/errors', resource: @comment %>
-  </div>
-  <%= render 'comments/form', test: @test %>
+
   <div class = 'comments_tab'>
     <%= render @test.comments%>
+  </div>
+
+  <div class = 'comment-errors'>
+    <%= render 'shared/errors', resource: @comment %>
+  </div>
+  
+  <div class = 'comment-form'>
+    <%= render 'comments/form', test: @test %>
   </div>
 </div>

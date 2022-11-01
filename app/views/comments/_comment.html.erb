@@ -1,12 +1,13 @@
 <% if !comment.user.nil? %>
-  <table class="comment_table">
-    <col width="50">
-    <col width="50">
-   <col width="100">
+  <table class="comment_table" cellspacing="0" cellpadding="4" >
+    <col width="200">
+    <col width="500">
+    <tr>
+      <th class = 'th_result'><%= comment.user.first_name %> <%= comment.user.last_name %></th>
+      <td class = 'th_result' rowspan="2" valign="middle"><%= comment.body %></td>
+    </tr>
     <tr>
       <td class = 'th_result'><%= comment.created_at.to_s.delete 'UTC' %></td>
-      <td class = 'th_result'><%= comment.user.first_name %> <%= comment.user.last_name %></td>  
-      <td class = 'th_result'><%= comment.body %></td>
     </tr>
   </table>
 <% end %>

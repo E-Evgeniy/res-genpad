@@ -6,9 +6,9 @@
 }
 
 .comment_field {
-    width: 300px;
+    width: 500px;
     height: 100px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .comment_button {
@@ -24,16 +24,20 @@
  }
 
  .comment_table {
-    width: 800px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    border-collapse: collapse;
  }
 
  .comments_tab {
-    margin-top: 50px;
+    margin-top: 10px;
  }
 
  .comment-errors {
     text-align: center;
+ }
+
+ .comment-form {
+   margin-top: 30px;
  }

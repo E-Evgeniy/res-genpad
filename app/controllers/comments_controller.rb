@@ -2,15 +2,13 @@ class CommentsController < ApplicationController
   before_action :find_test, only: %i[ new create ]
   before_action :set_comment, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[index show]
+  after_action :publish_comment, only: [:create]
 
   def new
     @comment = @test.comments.new
   end
 
   def create
-    puts('current_user', current_user)
-    
-    puts('comment_params',comment_params_for_create(comment_params))
     @comment = @test.comments.create(comment_params_for_create(comment_params))
   end
 
@@ -20,6 +18,15 @@ class CommentsController < ApplicationController
   end
   
   private
+
+  def publish_comment
+    return if @comment.errors.any?
+
+    data = ApplicationController.render partial: 'comments/comment', locals: { comment: @comment }
+ 
+    ActionCable.server.broadcast 'comment_channel',
+                                      content: data
+  end
 
   def find_test
     @test = Test.find(params[:test_id])
