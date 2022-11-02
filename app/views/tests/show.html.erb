@@ -2,7 +2,10 @@
 <div class = 'show_test'>
 <%= button_to t('.main_page'), general_path, method: :get, class:"page_button", params: { lang: I18n.locale } %>
 <%  if current_user.id == @test.user_id %>
-  <%= button_to 't', edit_test_path(@test), method: :get, class:"page_button", params: { lang: I18n.locale } %>
+  <%= button_to t('.edit'), edit_test_path(@test), method: :get, class:"page_button", params: { lang: I18n.locale } %>
+  <%= button_to t('.delete'), test_path(@test),
+                method: :delete,
+                data: { confirm: 'Are you sure?'}, class:"page_button", params: { lang: I18n.locale } %>
 <% end %>
 <p class = "h_result"><%= @test.testing_date %>  <%= @test.header %> от <%= @test.production_date %> </p>
 <p class = "b_desc"><%= t('.configuration_num') %> <%= @test.configuration_number %></p>

@@ -1,6 +1,18 @@
 ru:
   hello:  'Привет мир '
 
+  activerecord:
+    errors:
+      models:
+        comment:
+          attributes:
+            body:
+              blank: 'Комментарий не должен быть пустым'
+
+  files:
+    file:
+      files: 'Прикрепленные файлы'
+
   devise:
     sessions:
       new:
@@ -71,13 +83,22 @@ ru:
       action: 'Действия'
       edit: 'Редактировать'
       delete: 'Удалить'
+    
+    result_find:
+      date: 'Дата проведения теста'
+      marker: 'Маркер теста'
+      user: 'Тест провёл'
+      action: 'Действия'
+      edit: 'Редактировать'
+      delete: 'Удалить'
       
     find:
       find: ' Найти'
       main_page: 'На главную'
       head: 'Поиск отчётов'
       data_begin: 'Введите начальную дату'
-      data_end: 'Введите конечную дату'
+      data_end:   'Введите конечную дату'
+      last_10_tests: 'Последние отчёты'
 
   generals:
     index:
@@ -125,6 +146,7 @@ ru:
       average: 'Среднее значение'
       com_graph: 'Общее отображение графиков'
       files: 'Прикрепленные файлы:'
+      edit: 'Редактировать отчёт'
 
 
   helpers:
