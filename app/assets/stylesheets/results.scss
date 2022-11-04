@@ -7,9 +7,8 @@
     font-size: 18px; 
     border: 1px solid grey;
     border-collapse: collapse;
-    margin-top: 30px;
-    margin-left: 60px;
-    margin-right: 60px;
+    margin-top: 50px;
+    margin-left: 20px;
     overflow-wrap: break-word;
 }
 
@@ -24,4 +23,11 @@
 
 .no_result {
     text-align: center;
+}
+
+.last_report {
+   text-align: center;
+   padding-top: 30px;
+   margin: auto;
+   
 }

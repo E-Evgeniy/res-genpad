@@ -56,6 +56,22 @@
     <%= form.text_area :description, id: :test_description, class: 'text_field_head' %>
   </p>
 
+  <% if @test.files.attached? %> 
+  <div class = 'files'>
+    <h2><%=t('.files')%></h2>
+    <% @test.files.each do |file| %>
+      <li> <%= link_to file.filename.to_s, url_for(file) %> </li>
+      <%= link_to 'Delete this file', file_path(file), class: 'delete-test-file', method: :delete,
+            data: { remote: true, type: 'json' } %>
+    <% end %>
+  </div>
+ <% end %> 
+
+ <p>
+    <%= form.label :files %><br>
+    <%= form.file_field :files, multiple: true %>
+  </p>
+
   <%= button_to t('.edit'), tests_path, method: :get, class:"test_button", params: { lang: I18n.locale } %>
 
   <% end %>

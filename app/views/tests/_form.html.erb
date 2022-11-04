@@ -56,6 +56,11 @@
     <%= form.text_area :description, id: :test_description, class: 'text_field_head' %>
   </p>
 
+   <p>
+    <%= form.label :files %><br>
+    <%= form.file_field :files, multiple: true %>
+  </p>
+
   <%= button_to t('.create'), tests_path, method: :post, class:"test_button", params: { lang: I18n.locale } %>
 
   <% end %>

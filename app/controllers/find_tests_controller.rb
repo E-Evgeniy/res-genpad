@@ -1,5 +1,7 @@
 class FindTestsController < ApplicationController
+  before_action :authenticate_user!
   def find
+    @tests = Test.find_by_sql(["SELECT * from tests ORDER BY created_at DESC LIMIT 10"])
   end
 
   def result

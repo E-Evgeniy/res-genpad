@@ -15,3 +15,10 @@
     <%= button_to t('.find'), result_path, method: :get, class:"find_button", params: { lang: I18n.locale } %>
   <% end %>
 </div>
+
+<div class = 'last_report'>
+  <% if !@tests.nil? %>
+    <h3 class = 'head_last_report'> <%= t('.last_10_tests') %> </h3>
+    <%= render 'result_find', resource: @tests %>
+  <% end %>
+</div>

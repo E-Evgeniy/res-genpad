@@ -1,6 +1,10 @@
 en:
   hello:  'Hello world '
 
+  files:
+    file:
+      files: 'Attached files'
+
   devise:
     sessions:
       new:
@@ -71,12 +75,21 @@ en:
       edit: 'Edit'
       delete: 'Delete'
 
+    result_find:
+      date: 'Date of the test'
+      marker: 'Test marker'
+      user: 'The test was conducted'
+      action: 'Action'
+      edit: 'Edit'
+      delete: 'Delete'
+
     find:
       find: 'Start'
       main_page: 'To the main page'
       head: 'Search reports'
       data_begin: 'Enter start date'
       data_end:   'Enter end date'
+      last_10_tests: 'Last reports'
 
   generals:
     index:
@@ -123,6 +136,8 @@ en:
       min: 'Minimum value'
       average: 'Average value'
       com_graph: 'General display of graphs'
+      files: 'Attached files:'
+      edit: 'Edit report'
 
   
 

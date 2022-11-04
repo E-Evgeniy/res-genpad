@@ -21,6 +21,8 @@ module ResGenpad
 
     config.i18n.default_locale = :ru
 
+    config.time_zone = 'Moscow'
+
     config.generators do |g|
       g.test_framework :rspec,
                        view_specs: false,

@@ -1,0 +1,38 @@
+<table class="result_table">
+  <col width="50">
+  <col width="300">
+  <col width="250">
+  <col width="400">
+  <col width="120">
+  <col width="120">
+    <tr>
+      <th class = 'th_result'>№</th>
+      <th class = 'th_result'><%=t('.date')%></th>
+      <th class = 'th_result'><%=t('.marker')%></th>
+      <th class = 'th_result'><%=t('.user')%></th>
+      <th  colspain="2" class = 'th_result1'><%=t('.action')%></th>
+    </tr>
+    <% i = 1 %>
+    <% @tests.each do |test| %>
+      <tr>
+        <td class = 'th_result'><%= i %></td>
+        <td class = 'th_result'><%= link_to test.testing_date.strftime("%d-%m-%Y"), test_path(test) %></td>
+        <td class = 'th_result'><%= test.marker %></td>
+        <td class = 'th_result'><%= test.user.last_name %> <%= test.user.first_name %></td>
+        <% if current_user.id == test.user_id %>
+          <td class = 'th_result'><%= link_to t('.edit'),
+                edit_test_path(test), data: { test_id: test.id}
+                 %></td>
+          <td class = 'th_result'> <%= link_to t('.delete'),
+                test_path(test),
+                method: :delete,
+                data: { confirm: 'Are you sure?'} %>
+          </td>
+        <% else %>
+          <td class = 'th_result'></td>
+          <td class = 'th_result'></td>
+        <% end %>
+        <% i += 1 %>
+      </tr>
+    <% end %>
+  </table>
