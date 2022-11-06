@@ -1,6 +1,10 @@
 en:
   hello:  'Hello world '
 
+  home:
+    footer:
+      author: 'Evseev Ebgeniy'
+
   files:
     file:
       files: 'Attached files'

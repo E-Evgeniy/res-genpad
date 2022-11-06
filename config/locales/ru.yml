@@ -1,6 +1,10 @@
 ru:
   hello:  'Привет мир '
 
+  home:
+    footer:
+      author: 'Евсеев Евгений'
+
   activerecord:
     errors:
       models:
