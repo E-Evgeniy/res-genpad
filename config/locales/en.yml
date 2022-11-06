@@ -1,6 +1,10 @@
 en:
   hello:  'Hello world '
 
+  home:
+    footer:
+      author: 'Evseev Ebgeniy'
+
   files:
     file:
       files: 'Attached files'
@@ -138,6 +142,7 @@ en:
       com_graph: 'General display of graphs'
       files: 'Attached files:'
       edit: 'Edit report'
+      delete: 'Delete report'
 
   
 

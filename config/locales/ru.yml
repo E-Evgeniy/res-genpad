@@ -1,6 +1,10 @@
 ru:
   hello:  'Привет мир '
 
+  home:
+    footer:
+      author: 'Евсеев Евгений'
+
   activerecord:
     errors:
       models:
@@ -147,6 +151,7 @@ ru:
       com_graph: 'Общее отображение графиков'
       files: 'Прикрепленные файлы:'
       edit: 'Редактировать отчёт'
+      delete: 'Удалить отчёт'
 
 
   helpers:
